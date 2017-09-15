@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.core.entity">
+	<class name="InvestorQualification" table="jc_investor_qualification">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cmsUser" class="CmsUser" fetch="select" not-found="ignore">
+            <column name="user_id" />
+        </many-to-one>
+        <property name="identity" type="java.lang.Byte" column="identity"/>
+        <property name="realName" type="string" column="real_name"/>
+        <property name="userImg" type="string" column="user_img"/>
+        <property name="companyPost" type="string" column="company_post"/>
+        <property name="companyAddressProvince" type="string" column="company_address_province"/>
+        <property name="provinceName" type="string" column="province_name"/>
+        <property name="companyAddressCity" type="string" column="company_address_city"/>
+        <property name="cityName" type="string" column="city_name"/>
+        <property name="companyAddressDetail" type="string" column="company_address_detail"/>
+        <property name="idcardNumber" type="string" column="idcard_number"/>
+        <property name="wechatNumber" type="string" column="wechat_number"/>
+        <property name="investStage" type="string" column="invest_stage"/>
+        <property name="intentionIndustry" type="string" column="intention_industry"/>
+        <property name="investMin" type="java.lang.Double">
+            <column name="invest_min" precision="11" scale="4">
+            </column>
+        </property>
+        <property name="investMax" type="java.lang.Double">
+            <column name="invest_max" precision="11" scale="4">
+            </column>
+        </property>
+        <property name="holdStockRatioMin" type="java.lang.Double">
+            <column name="hold_stock_ratio_min" precision="11" scale="4">
+            </column>
+        </property>
+        <property name="holdStockRatioMax" type="java.lang.Double">
+            <column name="hold_stock_ratio_max" precision="11" scale="4">
+            </column>
+        </property>
+		<property name="successCase" type="string">
+            <column name="success_case" length="65535">
+            </column>
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="65535">
+            </column>
+        </property>
+        <property name="checkStatus" type="java.lang.Byte" column="check_status"/>
+        <property name="applyTime" type="timestamp">
+            <column name="apply_time" length="19">
+            </column>
+        </property>
+		 <property name="checkTime" type="timestamp">
+            <column name="check_time" length="19">
+            </column>
+        </property>
+		<property name="reason" type="string">
+            <column name="reason" length="65535">
+            </column>
+        </property>
+	</class>
+</hibernate-mapping>

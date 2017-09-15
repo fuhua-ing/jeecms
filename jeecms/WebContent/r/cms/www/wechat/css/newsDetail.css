@@ -1,0 +1,34 @@
+.content{
+	padding: 25px;
+	text-align: center;
+}
+.newsTitle{
+	font-size: 24px;
+	color: #333;
+}
+.date{
+	font-size: 12px;
+	color: #ececec;
+	margin: 7px 0 22px 0;
+}
+.pic img{
+	width: 100%;
+	margin-bottom: 15px;
+}
+.newsText{
+	text-align: left;
+	font-size: 14px;
+}
+.newsText img{
+	max-width: 100%;
+}
+/*@media screen and (max-width: 360px){
+	.pic img {
+	    width: 300px;
+	    height: 160px;
+	    margin-bottom: 15px;
+	}
+	.content{
+		padding: 25px 10px;
+	}
+}*/

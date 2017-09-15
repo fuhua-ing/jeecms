@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/${mobileRes!}/css/common.css">
+	<title>${channel.name}</title>
+	<style type="text/css">
+		.content{
+			padding: 0 10px;
+		}
+		table{
+			width: 100%;
+			border-collapse: collapse;
+		}
+		table td{
+			height: 150px;
+			border: 1px solid #d9d9d9;
+			border-width: 0 1px 1px 0;
+			text-align: center;
+			font-size: 16px;
+			color: #666;
+		}
+		table tr td:nth-child(2){
+			border-right: 0;
+		}
+		.logo{
+			display: inline-block;
+			width: 75px;
+			height: 75px;
+		}
+		.logo1{
+			background-position: -60px -90px;
+		}
+		.logo2{
+			background-position: -240px -90px;
+		}
+		.logo3{
+			background-position: -60px -240px;
+		}
+		.logo4{
+			background-position: -240px -240px;
+		}
+		.logo5{
+			background-position: -60px -390px;
+		}
+		.logo6{
+			background-position: -240px -390px;
+		}
+		.logo7{
+			background-position: -60px -540px;
+		}
+		.logo8{
+			background-position: -240px -540px;
+		}
+	</style>
+</head>
+<body>
+	<div class='content'>
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td style="width:50%">
+					[@cms_content id=162]
+					[#if tag_bean??]
+					<a href="${tag_bean.url}">
+						<div class="logo">
+                                                 <img src="${tag_bean.titleImg}"/>
+                                                  </div>
+						<div>${tag_bean.title}</div>
+					</a>
+				    [/#if]
+					[/@cms_content]
+				</td>
+				<td>
+					[@cms_content id=163]
+					[#if tag_bean??]
+					<a href="${tag_bean.url}">
+						<div class="logo">
+                                                 <img src="${tag_bean.titleImg}"/>
+                                                  </div>
+						<div>${tag_bean.title}</div>
+					</a>
+				    [/#if]
+					[/@cms_content]
+				</td>
+			</tr>
+			<tr>
+				<td>
+					[@cms_content id=156]
+					[#if tag_bean??]
+					<a href="${tag_bean.url}">
+						<div class="logo">
+                                                 <img src="${tag_bean.titleImg}"/>
+                                                  </div>
+						<div>${tag_bean.title}</div>
+					</a>
+				    [/#if]
+					[/@cms_content]
+				</td>
+				<td>
+					[@cms_content id=164]
+					[#if tag_bean??]
+					<a href="${tag_bean.url}">
+						<div class="logo">
+                                                 <img src="${tag_bean.titleImg}"/>
+                                                  </div>
+						<div>${tag_bean.title}</div>
+					</a>
+				    [/#if]
+					[/@cms_content]
+				</td>
+			</tr>
+			<tr>
+				<td>
+					[@cms_content id=165]
+					[#if tag_bean??]
+					<a href="${tag_bean.url}">
+						<div class="logo">
+                                                 <img src="${tag_bean.titleImg}"/>
+                                                  </div>
+						<div>${tag_bean.title}</div>
+					</a>
+				    [/#if]
+					[/@cms_content]
+				</td>
+				<td>
+					[@cms_content id=166]
+					[#if tag_bean??]
+					<a href="${tag_bean.url}">
+						<div class="logo">
+                                                 <img src="${tag_bean.titleImg}"/>
+                                                  </div>
+						<div>${tag_bean.title}</div>
+					</a>
+				    [/#if]
+					[/@cms_content]
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

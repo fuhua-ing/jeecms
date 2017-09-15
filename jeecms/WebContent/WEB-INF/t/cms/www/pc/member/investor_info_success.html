@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>审核通过</title>
+    <link rel="stylesheet" type="text/css" href="/${res}/css/common_grzx.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/index.css">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+	<script src="${resSys}/front.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$(function(){
+		$('#userLeftLi2').addClass("user_left_hover");
+		$('#commitBtn').click(function(){
+			window.location.href="modifyInvestorQualificationInfo.jspx";
+		});
+	});
+      function imgClick(obj,data){
+        var divElement = $("#div"+data);
+        if(divElement.is(':hidden')){
+          divElement.animate({height: 'toggle', opacity: 'toggle'}, "slow");
+        } else {
+          divElement.animate({height: 'toggle', opacity: 'toggle'}, "slow");
+        }
+      }
+    </script>
+</head>
+<body>
+    <#include "../include/header.html"/>
+    <section class="body_bg">
+           <div class="u_content">
+                 <div class="user_left">
+                      <ul>
+                      	<#include "../include/user_left.html"/>
+                      </ul>
+                 </div>
+                 <div class="user_right">
+                      <div class="renx"><span>投资人认证</span></div>
+                      <div class="rxbg">
+                              <span><img src="/${res}/img/rzicon.png">您已完成投资人认证！</span>
+                      </div>
+                      <!---------->
+                      <div class="zhan">
+                            <div class="title">
+                                 <span>基本信息</span>
+                                 <font><a href="javascript:void(0);" onclick="imgClick(this,1)">收起<img src="/${res}/img/up.png"></a></font>
+                            </div>
+                            <div id="div1" class="uetab">
+                                  <h2><span><i>*</i>投资人身份：</span>
+                                  <font><#if item.identity??&&item.identity==1><@s.m "investor.identity1"/>
+                                  <#elseif item.identity??&&item.identity==2><@s.m "investor.identity2"/>
+                                  <#else>${item.identity!}</#if></font></h2>
+                                  <h2><span><i>*</i>真实姓名：</span><font>${(item.realName)!}</font></h2>
+                                  <h2><span><i>*</i>公司职务：</span><font>${(item.companyPost)!}</font></h2>
+                                  <h2><span><i>*</i>所在公司：</span><font><i>${(item.provinceName)!}</i><i>${(item.cityName)!}</i>${(item.companyAddressDetail)!}</font></h2>
+                                  <h2><span><i>*</i>身份证号：</span><font>${(item.idcardNumber)!}</font></h2>
+                                  <h2><span>微信号：</span><font>${(item.wechatNumber)!}</font></h2>
+                            </div>
+                      </div>
+                      <!---------->
+                      <div class="zhan">
+                            <div class="title">
+                                 <span>投资兴趣</span>
+                                 <font><a href="javascript:void(0);" onclick="imgClick(this,2)">收起<img src="/${res}/img/up.png"></a></font>
+                            </div>
+                            <div id="div2" class="uetab">
+                                  <h2><span><i>*</i>投资阶段：</span><font><i>
+                                  <#if (item.investStage)??>
+										<#if investStageList??>
+											<#assign stageList=item.investStage?split(",")/>
+											<#list stageList as stage>
+												<#list investStageList as investStage>
+													<#if investStage.value==stage>
+													${investStage.name}
+													</#if>
+												</#list>
+												<#if stageList?size != (stage_index+1)>
+												、
+												</#if>
+											</#list>
+										<#else>
+											${(item.investStage)!}
+										</#if>
+									</#if>
+                                  <h2><span><i>*</i>意向投资行业：</span><font><i>
+	                                  <#if (item.intentionIndustry)??>
+										<#if investFiledList??>
+											<#assign intentionIndustryList=item.intentionIndustry?split(",")/>
+											<#list intentionIndustryList as intentionIndustry>
+												<#list investFiledList as investFiled>
+													<#if investFiled.value==intentionIndustry>
+													${investFiled.name}
+													</#if>
+												</#list>
+												<#if intentionIndustryList?size != (intentionIndustry_index+1)>
+												、
+												</#if>
+											</#list>
+										<#else>
+											${(item.intentionIndustry)!}
+										</#if>
+									</#if>
+                                  	</i></font></h2>
+                                  <h2><span><i>*</i>单个项目投资额度：</span><font>
+                                  <#if (item.investMin?? && item.investMin?length gt 0)||(item.investMax?? && item.investMax?length gt 0)>
+                                  <i>${(item.investMin)!'0'}万元</i><i><b>~</b></i>${(item.investMax)!'0'}万元
+                                  <#else>面议</#if></font></h2>
+                                  <h2><span><i>*</i>单个项目参股比例：</span><font>
+                                  <#if (item.holdStockRatioMin?? && item.holdStockRatioMin?length gt 0)||(item.holdStockRatioMax?? && item.holdStockRatioMax?length gt 0)>${item.holdStockRatioMin!'0'}~${item.holdStockRatioMax!'0'}
+                                  <#else>面议</#if></font></h2>
+                                  <h2><span>成功投资案例：</span><font>${item.successCase!'无'}</font></h2>
+                                  <h2><span>备注：</span><font>${item.comment!'无'}</font></h2>
+                            </div>
+                       </div>             
+                      <!---------->
+                      <div class="butbot"><button class="button01 martop50" id="commitBtn">修改认证信息</button></div>
+                   </div>
+           </div>
+    </section>
+    <#include "../include/footer.html"/>
+</body>
+</html>

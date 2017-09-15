@@ -1,0 +1,76 @@
+.trends{
+    width: 650px;
+    margin: 0px auto;
+    border-bottom: 1px solid #dfbc6f;
+    line-height: 60px;
+}
+.trends span{
+    display: inline-block;
+    margin-left: 100px;
+    color: #666;
+    font-size: 20px;
+    cursor: pointer;
+}
+.trends img{
+    width: 20px;
+    position: relative;
+    top: 5px;
+}
+.memberContent{
+    width: 900px;
+    height: 650px;
+    display: none;
+    margin: 0 auto;
+}
+.memberActive{
+    display: block;
+}
+.talkContent{
+    width: 650px;
+    margin: 0 auto;
+    overflow: auto;
+    margin-top: 40px;
+}
+.talkContent>span{
+    padding-left: 40px;
+    color: #646464;
+    font-size: 18px;
+}
+.talkContent>span:last-child{
+    margin-top: 14px;
+    display: inline-block;
+
+}
+
+/* 意见反馈 */
+.advice{
+    width: 650px;
+    height: auto;
+    margin: 0 auto;
+}
+.advice>span{
+    display: inline-block;
+    margin-top: 28px;
+    text-indent: 8mm;
+    color: #646464;
+    font-size: 18px;
+}
+textarea{
+    width: 650px;
+    height: 300px;
+    margin-top: 28px;
+    border: 1px solid #dfbc6f;
+}
+#subBtn{
+	width:130px;
+	height:40px;
+	margin:0 auto;
+	display:block;
+	margin-top:20px;
+	color:#fff;
+	background:#dfbc6f;
+	border:none;
+	border-radius:5px;
+	cursor:pointer;
+	font-size:18px;
+	}

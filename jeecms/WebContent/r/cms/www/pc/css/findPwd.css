@@ -1,0 +1,95 @@
+.inputBox{
+	margin-bottom: 15px;
+	overflow: hidden;
+}
+.must{
+	color: #ff0000;
+	font-size: 18px;
+	position: relative;
+    top: 4px;
+    right: 10px;
+}
+.inputBox span{
+	display: inline-block;
+	width: 220px;
+	height: 42px;
+	text-align: right;
+	font-size: 15px;
+	color: #666;
+	float: left;
+	line-height: 36px;
+}
+.inputBox img{
+	display: inline-block;
+	width: 70px;
+	height: 32px;
+	float: left;
+	margin-top: 5px;
+}
+.inputSty{
+	width: 282px;
+	height: 42px;
+	border: 1px solid #dadada;
+	border-radius: 4px;
+	padding-left: 10px;
+	outline: none;
+	font-size: 15px;
+	float: left;
+}
+.codeSty{
+	width: 162px;
+	margin-right: 20px;
+}
+.getCode{
+	width: 110px;
+	background-color: #329eea;
+	height: 42px;
+	font-size: 15px;
+}
+.getCode:hover{
+	background-color: #49a7eb;
+}
+.loginBtn{
+	margin-top: 30px;
+}
+/*提示框默认样式...*/
+.cover-level{
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:rgba(0,0,0,.2);
+}
+#alert-dialog{
+	width:400px;
+	height:100px;
+	border:1px solid #f2f2f2;
+	position:absolute;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-50px;
+	margin-left: -200px;
+	background-color:#f2f2f2;
+}
+.alert-text{
+	width:400px;
+	height:58px;
+	line-height:58px;
+	border-bottom:1px solid #ddd;
+	color:#989A9C;
+	padding-left:30px;
+}
+.a-container{
+	display:flex;
+	justify-content:flex-end;
+	height:39px;
+	line-height:39px;
+}
+.close-dialog{
+	font-size:14px;
+	margin-right:20px;
+	color:#329eea;
+}

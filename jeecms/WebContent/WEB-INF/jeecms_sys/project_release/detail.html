@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div class="page-positon ove">
+  <div class="position-div"><@s.m "global.position"/>: <@s.m "cmsMessage.investor"/> > <@s.m "global.browse"/></div>
+</div>
+<div class="box-positon ck">
+	<form class="ropt">
+		<input type="button" value="<@s.m "global.backToList"/>" onclick="history.back();" class="return-button"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+<@p.form id="jvForm" labelWidth="12" class="formDefStyle">
+<@p.td width="50" colspan="1" label="cmsUser.username" >${(item.cmsUser.username)!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.companyName">${item.companyName!}</@p.td>
+<@p.td width="50" colspan="1" label="investor.companyAddressDetail" >${item.addressD!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.stage">
+	<#if (item.stage)??>
+		<#if investStageList??>
+			<#list investStageList as investStage>
+				<#if investStage.value==item.stage>
+				${investStage.name}
+				</#if>
+			</#list>
+		<#else>
+			${item.stage!}
+		</#if>
+	</#if>
+</@p.td>
+<@p.td width="50" colspan="1" label="projectRelease.industry" >
+	<#if (item.industry)??>
+		<#if investFiledList??>
+			<#list investFiledList as investFiled>
+				<#if investFiled.value==item.industry>
+				${investFiled.name}
+				</#if>
+			</#list>
+		<#else>
+			${item.industry!}
+		</#if>
+	</#if>
+</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="projectRelease.teamStand" >${item.teamStand!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.financingAmount" >${item.financingAmount!}</@p.td>
+<@p.td width="50" colspan="1" label="projectRelease.financingYear" >${item.financingYear!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.accountScale" >${item.accountScaleMin!}~${item.accountPositionMax!}</@p.td>
+<@p.td width="50" colspan="1" label="projectRelease.investExit" >
+	<#if (item.investExit)??>
+		<#if investAccountExitList??>
+			<#list investAccountExitList as investAccountExit>
+				<#if investAccountExit.value==item.investExit>
+				${investAccountExit.name}
+				</#if>
+			</#list>
+		<#else>
+			${item.investExit!}
+		</#if>
+	</#if>
+</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.checkStatus" >
+	<#if item.checkStatus??&&item.checkStatus==1><@s.m "investor.checkStatus1"/>
+	<#elseif item.checkStatus??&&item.checkStatus==2><@s.m "investor.checkStatus2"/>
+	<#elseif item.checkStatus??&&item.checkStatus==3><@s.m "investor.checkStatus3"/>
+	<#else>${item.checkStatus!}</#if>
+</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="projectRelease.accountPurpose" >${item.accountPurpose!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="projectRelease.reason" >${item.reason!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="projectRelease.projectAdvantage" >${item.projectAdvantage!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="projectRelease.projectSituation" >${item.projectSituation!}</@p.td>
+<@p.tr/>
+</@p.form>
+</div>
+</body>
+</html>

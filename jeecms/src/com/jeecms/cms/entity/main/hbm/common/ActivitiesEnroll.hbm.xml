@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2017-8-18 15:29:17 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+    <class name="ActivitiesEnroll" table="jc_activities_enroll">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="content" class="Content" fetch="select" insert="true" update="false">
+            <column name="content_id">
+                <comment>Content关联ID</comment>
+            </column>
+        </many-to-one>
+        <property name="enrollName" type="string">
+            <column name="enroll_name">
+                <comment>报名人姓名</comment>
+            </column>
+        </property>
+        <property name="enrollPhone" type="string">
+            <column name="enroll_phone">
+                <comment>报名人手机</comment>
+            </column>
+        </property>
+        <property name="enrollTime" type="timestamp">
+            <column name="enroll_time">
+                <comment>创建时间</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div class="page-positon ove">
+  <div class="position-div"><@s.m "global.position"/>: <@s.m "cmsMessage.investor"/> > <@s.m "global.browse"/></div>
+</div>
+<div class="box-positon ck">
+	<form class="ropt">
+		<input type="button" value="<@s.m "global.backToList"/>" onclick="history.back();" class="return-button"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+<@p.form id="jvForm" labelWidth="12" class="formDefStyle">
+<@p.td width="50" colspan="1" label="cmsUser.username" >${(item.cmsUser.username)!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.companyName">${item.companyName!}</@p.td>
+<@p.td width="50" colspan="1" label="investor.companyAddressDetail" >${item.addressD!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.stage">
+	<#if item.investStage??&&item.stage==1><@s.m "investor.investStage1"/>
+	<#elseif item.stage??&&item.stage==2><@s.m "investor.investStage2"/>
+	<#elseif item.stage??&&item.stage==3><@s.m "investor.investStage3"/>
+	<#elseif item.stage??&&item.stage==4><@s.m "investor.investStage4"/>
+	<#elseif item.stage??&&item.stage==5><@s.m "investor.investStage5"/>
+	<#else>${item.stage!}</#if>
+</@p.td>
+<@p.td width="20" colspan="1" label="projectRelease.industry" >
+	<#if item.industry??&&item.industry==1><@s.m "investor.industry1"/>
+	<#elseif item.industry??&&item.industry==2><@s.m "investor.industry2"/>
+	<#elseif item.industry??&&item.industry==3><@s.m "investor.industry3"/>
+	<#elseif item.industry??&&item.industry==4><@s.m "investor.industry4"/>
+	<#elseif item.industry??&&item.industry==5><@s.m "investor.industry5"/>
+	<#elseif item.industry??&&item.industry==6><@s.m "investor.industry6"/>
+	<#elseif item.industry??&&item.industry==7><@s.m "investor.industry7"/>
+	<#elseif item.industry??&&item.industry==8><@s.m "investor.industry8"/>
+	<#elseif item.industry??&&item.industry==9><@s.m "investor.industry9"/>
+	<#elseif item.industry??&&item.industry==10><@s.m "investor.industry10"/>
+	<#elseif item.industry??&&item.industry==11><@s.m "investor.industry11"/>
+	<#elseif item.industry??&&item.industry==12><@s.m "investor.industry12"/>
+	<#else>${item.industry!}</#if>
+</@p.td>
+<@p.td width="30" colspan="1" label="projectRelease.otherIndustry" >${item.otherIndustry!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.financingAmount" >${item.financingAmount!}</@p.td>
+<@p.td width="50" colspan="1" label="projectRelease.discussFinancing" >${item.discussFinancing!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.accountScaleMin" >${item.financingAmount!}</@p.td>
+<@p.td width="50" colspan="1" label="projectRelease.accountPositionMax" >${item.discussFinancing!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="projectRelease.checkStatus" >
+	<#if item.checkStatus??&&item.checkStatus==1><@s.m "investor.checkStatus1"/>
+	<#elseif item.checkStatus??&&item.checkStatus==2><@s.m "investor.checkStatus2"/>
+	<#elseif item.checkStatus??&&item.checkStatus==3><@s.m "investor.checkStatus3"/>
+	<#else>${item.checkStatus!}</#if>
+</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="projectRelease.accountPurpose" >${item.accountPurpose!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="projectRelease.reason" >${item.reason!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="projectRelease.projectAdvantage" >${item.projectAdvantage!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="projectRelease.projectSituation" >${item.projectSituation!}</@p.td>
+<@p.tr/>
+</@p.form>
+</div>
+</body>
+</html>

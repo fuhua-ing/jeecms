@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jeecms.core.entity.JcMessageRecord" table="jc_message_record">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="messageCode" type="java.lang.String">
+            <column name="message_code" length="100">
+                <comment>事件唯一uuid</comment>
+            </column>
+        </property>
+        <property name="messageType" type="java.lang.String">
+            <column name="message_type" length="30">
+                <comment>要做啥</comment>
+            </column>
+        </property>
+        <property name="messageApplyTime" type="java.sql.Timestamp">
+            <column name="message_apply_time" length="19">
+                <comment>申请时间开始区域</comment>
+            </column>
+        </property>
+        <property name="messageEndTime" type="java.sql.Timestamp">
+            <column name="message_end_time" length="19">
+                <comment>申请时间结束区域</comment>
+            </column>
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="user_name" length="20" not-null="true">
+                <comment>username</comment>
+            </column>
+        </property>
+        <property name="reserveOne" type="java.lang.String">
+            <column name="reserve_one" length="50" not-null="false">
+                <comment>保留字段1</comment>
+            </column>
+        </property>
+        <property name="reserveTwo" type="java.lang.String">
+            <column name="reserve_two" length="50" not-null="false">
+                <comment>保留字段2</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

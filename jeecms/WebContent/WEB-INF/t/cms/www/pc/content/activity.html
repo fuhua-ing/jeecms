@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	 <title>${site.name}</title>
+    <meta http-equiv="keywords" content="${site.keywords!}"/>
+    <meta http-equiv="description" content="${site.description!}"/>
+    <script src="${resSys}/validate/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="${resSys}/validate/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="${resSys}/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${resSys}/alert/shCore.js'" type="text/javascript"></script>
+    <script src="${resSys}/alert/makeSy.js'" type="text/javascript"></script>
+    <script src="${resSys}/alert/alert.min.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="${resSys}/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="/${res}/css/index.css">
+	<link rel="stylesheet" type="text/css" href="${resSys}/alert/alert.css">
+	<style type="text/css">
+		
+		.detailTitle{
+		    font-weight: bold;
+	        font-size: 28px;
+	        margin-bottom: 25px;
+	        margin-top: 30px;
+                text-align:center;
+		}
+		.detailDate{
+		    color: #999;
+		    font-size: 18px;
+		    margin-bottom: 35px;
+		    text-align: center;
+		}
+		.picBox{
+			    padding: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", u5FAEu8F6Fu96C5u9ED1, Arial, SimSun, u5B8Bu4F53;
+    color: rgb(51, 51, 51);
+    white-space: normal;
+    line-height: 2em;
+    text-align: center;
+		}
+		.detailText{
+			    padding: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", u5FAEu8F6Fu96C5u9ED1, Arial, SimSun, u5B8Bu4F53;
+    color: rgb(51, 51, 51);
+    white-space: normal;
+    line-height: 2em;
+		}
+		
+	.baom{width:100%; margin:0 auto; padding:0px; display:table; text-align:left; margin-top:80px; font-size:18px; color:#333333}
+    .baom_tab{width:100%;height:42px; margin:0 auto; padding:0px; display:table;display:table; color:#999; font-size:15px; margin-top:30px;line-height:42px;}
+    .baom_tab span{float:left}
+    .bainput{width:260px; height:42px; line-height:42px; border:#dadada 1px solid; border-radius:4px; font-family:"微软雅黑"; font-size:15px; padding:0px 5px; color:#bcbcbc}
+    .mar_right{ margin-right:40px;*margin-right:30px;}
+    .bmbutton{width:160px; height:42px; background:#cdb071; border:none; cursor:pointer;border-radius:4px; font-family:"微软雅黑"; font-size:15px; color:#FFF;}
+	
+	.error{
+	        color: red;
+            border-color:red;
+            outline:none;
+	}
+	</style>
+	
+		<script type="text/javascript">
+
+	 function alertF(data){
+		 /* alert(data); */
+		var result;
+		if(data == "true"){
+			result = "参加报名成功！";
+		}else{
+			result = "参加报名失败！";
+		}
+		
+     	var M = {}
+     	if(M.dialog3){
+ 			return M.dialog3.show();
+ 		}
+ 		M.dialog3 = jqueryAlert({
+ 			'style'   : 'wap',
+ 			'icon'    : '${resSys}/alert/icon/right.png',
+ 			'title'   :  result,
+ 			'width'   : '250',
+ 			'height'  : '80',
+ 			'closeTime' : 2000,
+ 			'modal'   : true,
+ 			'buttons' :{
+ 				'确定' : function(){
+ 					M.dialog3.close();
+ 					/* document.getElementById("formId").reset(); */
+ 					window.location.reload();
+ 				}
+ 			}
+ 		})
+     	
+     }
+	jQuery.validator.addMethod("isMobile", function(value, element) {  
+		    var length = value.length;  
+		    var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;  
+		    return this.optional(element) || (length == 11 && mobile.test(value));  
+		}, "请正确填写您的手机号码");  
+	
+	$(function(){
+		$("#formId").validate({
+			rules : {
+				username : {
+					required : true
+				},
+				userphone : {
+					required : true,
+					minlength : 11,
+					maxlength : 11,
+					isMobile : true,
+					remote : {
+						url : "/activities/check_user_phone.jspx",
+							type : "post",
+							dataType : "json",
+							cache : false,
+							async : false, 
+							data : {
+								userphone : function(){
+									return $("#userphone").val();
+								},
+								contentId : function(){
+									return $("#contentId").val();
+								}
+							},
+							dataFilter : function (data , type){
+								return data;
+							}
+					}
+				}
+			},
+			messages : {
+				username : {
+        			  required : "请输入姓名"
+        		  },
+        		userphone : {
+        			  required : "手机号码不能为空",
+        			  minlength: "号码长度不得低于11位",
+        			  maxlength: "号码长度不得高于11位",
+        			  isMobile : "请正确填写您的手机号码",
+        			  remote : "该手机号已参与报名"
+        		  }
+        	  },
+        	  errorClass: "error",
+        	  onfocusout: function(element){
+	               $(element).valid();
+	          },
+	          errorPlacement: function (error, element) {
+                  if ($(element).next("div").hasClass("tooltip")) {
+                          $(element).parent().attr("data-original-title", $(error).text()).attr("data-placement","bottom").tooltip("show");
+                   } else {
+                	   $(element).parent().attr("data-original-title", $(error).text()).attr("data-placement","bottom").tooltip("show");
+                  }
+              },
+              unhighlight: function (element, errorClass, validClass) { 
+                   $(element).tooltip('destroy').removeClass(errorClass);
+               },
+               submitHandler: function(){
+           		  $.ajax({
+           			  url : "/activities/enroll.jspx",
+           			  type : "post",
+           			  data:{
+           				  username : $("#username").val(),
+           				  userphone : $("#userphone").val(),
+           				  contentId : $("#contentId").val()
+           			  },
+                         async : false, 
+                         success:function(data){  
+                       	 alertF(data);
+                         }  
+           		  });
+           	  }
+		});
+	})
+		
+   </script>
+</head>
+<body>
+	[#include "../include/header.html"/]
+	<section class="content">
+		<div class="detail">
+			<div class="detailTitle">${content.title}</div>
+			<div class="detailDate">${content.releaseDate?string('yyyy-MM-dd')}</div>
+			${txt!}
+		</div>
+		<div class="baom">报名截止时间：2017-07-29</div>
+		<form id="formId">
+		        <input type="hidden" id="contentId" name="contentId" value=${content.id}/>
+                <div class="baom_tab">
+                    <span>姓名：</span>
+                    <span><input id="username" name="username" type="text" class="bainput mar_right" placeholder="请输入您的姓名"></span>
+                    <span>联系方式：</span>
+                    <span><input id="userphone" name="userphone" type="text" class="bainput mar_right" placeholder="请输入您的手机号码"></span>
+                    <span><input type="submit" class="bmbutton" value="立即报名"/></span><br/>
+                </div>
+           </form>
+	</section>
+	<div id="myModal" class="reveal-modal">
+    <!-- <h1>
+        jquery导出层
+    </h1>
+    <p>
+        This is a default modal in all its glory, but any of the styles here can easily be changed in the CSS.
+    </p>
+    <a class="close-reveal-modal">×</a>
+    </div>
+ -->	[#include "../include/footer.html"/]
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jeecms.core.entity.JcCorp" table="jc_corp">
+        <id name="corpId" type="java.lang.Integer">
+            <column name="corp_id" />
+            <generator class="identity" />
+        </id>
+        <property name="corpName" type="java.lang.String">
+            <column name="corp_name" length="100">
+                <comment>企业姓名</comment>
+            </column>
+        </property>
+        <property name="corpLegalPerson" type="java.lang.String">
+            <column name="corp_legal_person" length="30">
+                <comment>企业法人姓名</comment>
+            </column>
+        </property>
+        <property name="corpLegalPersonTel" type="java.lang.String">
+            <column name="corp_legal_person_tel" length="16">
+                <comment>法人联系电话</comment>
+            </column>
+        </property>
+        <property name="corpRegisteredFunds" type="java.lang.Double">
+            <column name="corp_registered_funds" precision="15">
+                <comment>注册资金</comment>
+            </column>
+        </property>
+        <property name="corpTrueFunds" type="java.lang.Double">
+            <column name="corp_true_funds" precision="15">
+                <comment>实到资金</comment>
+            </column>
+        </property>
+        <property name="corpManageScope" type="java.lang.String">
+            <column name="corp_manage_scope" length="60">
+                <comment>经营范围</comment>
+            </column>
+        </property>
+        <property name="corpFixedTel" type="java.lang.String">
+            <column name="corp_fixed_tel" length="16">
+                <comment>企业固定电话</comment>
+            </column>
+        </property>
+        <property name="corpFax" type="java.lang.String">
+            <column name="corp_fax" length="16">
+                <comment>传真</comment>
+            </column>
+        </property>
+        <property name="corpHomepage" type="java.lang.String">
+            <column name="corp_homepage" length="200">
+                <comment>企业网站</comment>
+            </column>
+        </property>
+        <property name="corpWechat" type="java.lang.String">
+            <column name="corp_wechat" length="50">
+                <comment>联系人微信</comment>
+            </column>
+        </property>
+        <property name="corpMainBusiness" type="java.lang.String">
+            <column name="corp_main_business" length="600">
+                <comment>企业主营业务范围</comment>
+            </column>
+        </property>
+        <property name="corpSituationBusiness" type="java.lang.String">
+            <column name="corp_situation_business" length="600">
+                <comment>现阶段业务经营情况</comment>
+            </column>
+        </property>
+        <property name="corpPlanBusiness" type="java.lang.String">
+            <column name="corp_plan_business" length="600">
+                <comment>业务开展计划</comment>
+            </column>
+        </property>
+        <property name="corpChairman" type="java.lang.String">
+            <column name="corp_chairman" length="30">
+                <comment>董事长姓名</comment>
+            </column>
+        </property>
+        <property name="corpChairmanTel" type="java.lang.String">
+            <column name="corp_chairman_tel" length="16">
+                <comment>董事长联系方式</comment>
+            </column>
+        </property>
+        <property name="corpGeneralManager" type="java.lang.String">
+            <column name="corp_general_manager" length="30">
+                <comment>总经理</comment>
+            </column>
+        </property>
+        <property name="corpGeneralManagerTel" type="java.lang.String">
+            <column name="corp_general_manager_tel" length="16">
+                <comment>总经理联系方式</comment>
+            </column>
+        </property>
+        <property name="corpOrganizationStructure" type="java.lang.String">
+            <column name="corp_organization_structure" length="600">
+                <comment>人员架构</comment>
+            </column>
+        </property>
+        <property name="corpManagementStructure" type="java.lang.String">
+            <column name="corp_management_structure" length="600">
+                <comment>管理结构</comment>
+            </column>
+        </property>
+        <property name="corpLicense" type="java.lang.String">
+            <column name="corp_license" length="600">
+                <comment>营业执照图片</comment>
+            </column>
+        </property>
+        <property name="corpApplyTime" type="java.sql.Timestamp">
+            <column name="corp_apply_time" length="19" not-null="true">
+                <comment>申请入住日期</comment>
+            </column>
+        </property>
+        <property name="corpAudit" type="java.lang.Integer">
+            <column name="corp_audit" not-null="true">
+                <comment>是否审核通过 0 未审核 1 审核通过 2 审核不通过</comment>
+            </column>
+        </property>
+        <property name="corpApplyUsername" type="java.lang.String">
+            <column name="corp_apply_username" length="100" not-null="true">
+                <comment>用户名</comment>
+            </column>
+        </property>
+        <property name="corpIsCooperation" type="java.lang.Boolean">
+            <column name="corp_isCooperation" not-null="true">
+                <comment>是否外部合作机构</comment>
+            </column>
+        </property>
+                <property name="corpAuditPerson" type="java.lang.String">
+            <column name="corp_audit_person" length="40" />
+        </property>
+        <property name="corpAuditTime" type="java.sql.Timestamp">
+            <column name="corp_audit_time" length="19" />
+        </property>
+                <property name="corpAuditReason" type="java.lang.String">
+            <column name="corp_audit_reason" length="600" />
+        </property>
+    </class>
+</hibernate-mapping>

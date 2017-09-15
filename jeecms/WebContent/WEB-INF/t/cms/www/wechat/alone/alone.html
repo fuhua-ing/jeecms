@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/${mobileRes!}/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${mobileRes!}/css/newsDetail.css">
+	<title>${channel.name}</title>
+</head>
+<body>
+	<div class="content">
+		<div class="newsTitle">${channel.name}</div>
+		<div class="date"></div>
+		<div class="pic">
+			<img src="${channel.contentImg}">
+		</div>
+		<div class="newsText">
+			${channel.txt}
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+.pic{
+	position: relative;
+}
+.btnBox{
+	position: absolute;
+	width: 480px;
+	left: 50%;
+	margin-left: -240px;
+	top: 50%;
+	margin-top: -100px;
+	color: #fff;
+	text-align: center;
+}
+.btnBox .name{
+	font-size: 48px;
+	margin-bottom: 5px;
+}
+.btnBox .naemEn{
+	font-size: 24px;
+	margin-bottom: 35px;
+}
+.btn{
+	width: 190px;
+	height: 55px;
+	font-size: 18px;
+}
+.entryBox{
+	text-align: center;
+	margin: 40px 0;
+}
+.trends{
+    width: 650px;
+    margin: 0px auto;
+    border-bottom: 1px solid #dfbc6f;
+    line-height: 60px;
+}
+.trends span{
+    display: inline-block;
+    margin-left: 100px;
+    color: #666;
+    font-size: 20px;
+}
+.trends img{
+    width: 20px;
+    position: relative;
+    top: 5px;
+}
+
+.trendsSearch{
+    position: relative;
+    width: 650px;
+    margin: 24px auto 30px;
+}
+.trendsSearch input{
+    width: 650px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #dcdcdc;
+    padding-left: 30px;
+    padding-right: 34px;
+    box-sizing: border-box;
+    outline: none;
+}
+.trendsSearch img{
+    position: absolute;
+    right: 34px;
+    top: 8px;
+    width: 25px;
+    border-left: 1px solid #dcdcdc;
+    padding-left: 20px;
+}
+.btnSty{
+	background: #7a83a8;
+}
+
+
+.center{
+	overflow: hidden;
+}
+.centeritem{
+	width: 240px;
+	height: 282px;
+	float: left;
+	text-align: center;
+	margin: 20px 40px;
+	box-shadow: 0 0 20px #eee;
+	border-radius: 5px;
+	padding: 30px;
+}
+.itemName{
+	margin-bottom: 30px;
+	font-size: 14px;
+	color: #646464;
+	position: relative;
+}
+.itemName:before{
+	position: absolute;
+	content: "";
+	top: 32px;
+	width: 42px;
+	height: 1px;
+	background: #999;
+	left: 69px;
+}
+.centeritem img{
+	margin-bottom: 30px;
+	width: 80px;
+	height: 80px;
+}
+.centeritem p{
+	text-align: center;
+	margin: 0 auto;
+	font-size: 12px;
+	color: #646464;
+}
+.entryBoxItem{
+	position: relative;
+}
+.entryBoxItem span{
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+	top: -47px;
+	left: 0;
+	color: #fff;
+	font-weight: bold;
+	font-size: 22px;
+}
+.regCom ul{
+	width: 900px;
+	margin: 0 auto;
+}
+.regCom ul li{
+	width: 100%;
+	height: 60px;
+	padding: 0 20px 0 30px;
+	line-height: 60px;
+	font-size: 18px;
+	color: #333;
+}
+.regCom ul li:nth-child(2n+1){
+	background: #f5f5f5;
+}

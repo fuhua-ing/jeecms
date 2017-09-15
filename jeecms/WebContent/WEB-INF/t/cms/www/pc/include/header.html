@@ -1,0 +1,29 @@
+<header>
+		<div class="head">
+			<img src="/${res}/img/logo.png">
+			<ul>
+				[@cms_channel_list]
+                [#list tag_list as c]
+                [#if channel?? && c.id==75]
+				    <li><a class="color-dfbc6f" href="${site.url!}">首 页</a></li>
+                [#else]
+                    [#if channel??&&((channel.parent??&&channel.parent.id==c.id)||channel.id==c.id)]
+                    <li class="active">${c.name}</li>
+                    [#else]
+				    <li><a class="color-dfbc6f" href="${c.url}">${c.name}</a></li>
+				    [/#if]
+                [/#if]
+				[/#list]
+				[/@cms_channel_list]
+			</ul>
+			<div id="loginCsiDiv" style="float: right;"></div>
+	  <script type="text/javascript">
+		$(function(){
+				[#if site.config.ssoEnable]
+				Cms.loginSSO('${base}');
+				[/#if]
+				Cms.loginCsi("${base}","loginCsiDiv",{"returnUrl":"${location}"});
+			});
+	   </script>
+		</div>
+</header>

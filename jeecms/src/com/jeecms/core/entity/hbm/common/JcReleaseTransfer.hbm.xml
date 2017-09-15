@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.core.entity">
+    <class name="JcReleaseTransfer" table="jc_release_transfer">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cmsUser" class="CmsUser" fetch="select" not-found="ignore">
+            <column name="user_id" />
+        </many-to-one>
+        <property name="projectName" type="string">
+            <column name="project_name">
+            </column>
+        </property>
+        <property name="companyName" type="string">
+            <column name="company_name">
+            </column>
+        </property>
+        <property name="companyAddressProvince" type="string">
+            <column name="company_address_province">
+            </column>
+        </property>
+        <property name="provinceName" type="string">
+            <column name="province_name">
+            </column>
+        </property>
+        <property name="companyAddressCity" type="string">
+            <column name="company_address_city">
+            </column>
+        </property>
+        <property name="cityName" type="string">
+            <column name="city_name">
+            </column>
+        </property>
+        <property name="companyAddressDetail" type="string">
+            <column name="company_address_detail">
+            </column>
+        </property>
+        <property name="industry" type="string">
+            <column name="industry">
+            </column>
+        </property>
+        <property name="stage" type="string">
+            <column name="stage">
+            </column>
+        </property>
+        <property name="projectDescribe" type="string">
+            <column name="project_describe" length="65535">
+            </column>
+        </property>
+        <property name="evaluation" type="java.lang.Double">
+            <column name="evaluation" precision="11" scale="4">
+            </column>
+        </property>
+        <property name="transferStockRatio" type="java.lang.Double">
+            <column name="transfer_stock_ratio" precision="11" scale="4">
+            </column>
+        </property>
+        <property name="holdStockRatio" type="java.lang.Double">
+            <column name="hold_stock_ratio" precision="11" scale="4">
+            </column>
+        </property>
+        <property name="remark" type="string">
+            <column name="remark" length="65535">
+            </column>
+        </property>
+		<property name="checkStatus" type="java.lang.Byte">
+            <column name="check_status">
+            </column>
+        </property>
+        <property name="showStatus" type="java.lang.Byte">
+            <column name="show_status">
+            </column>
+        </property>
+        <property name="applyTime" type="timestamp">
+            <column name="apply_time" length="19">
+            </column>
+        </property>
+		<property name="reason" type="string">
+            <column name="reason">
+            </column>
+        </property>
+		<property name="checkTime" type="timestamp">
+            <column name="check_time" length="19">
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

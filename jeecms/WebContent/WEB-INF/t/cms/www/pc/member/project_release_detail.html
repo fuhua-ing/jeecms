@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>发布项目</title>
+    <link rel="stylesheet" type="text/css" href="/${resSys}/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/common_grzx.css">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+	<script src="${resSys}/front.js" type="text/javascript"></script>
+	<script src="${resSys}/www/pc/js/jquery.serializejson.min.js" type="text/javascript"></script>
+	<script src="${resSys}/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/${res}/js/region.js" type="text/javascript"></script>
+	
+	<style type="text/css">
+     #financingAmount ::-webkit-input-placeholder { /* WebKit browsers */ text-align:right;}
+     #financingAmount :-moz-placeholder { /* Mozilla Firefox 4 to 18 */ text-align:right;}
+     #financingAmount ::-moz-placeholder { /* Mozilla Firefox 19+ but I'm not sure about working */ text-align:right;}
+     #financingAmount :-ms-input-placeholder { /* Internet Explorer 10+ */ text-align:right;}
+     .usertab table tr td b{ margin: 0px 8px; font-style: normal; color: #dfbc6f; font-weight: normal; line-height: 47px;}
+     .usertab table tr td .prtext{ width:300px; height:47px; display:block; folat:left; line-height:47px}
+     .prtext { width: 214px !important; height: 37px !important; line-height: 37px !important; padding: 5px; border: #dadada 1px solid; border-radius: 4px; 
+             font-family: "微软雅黑"; font-size: 15px; color: #666; display: inline; float: left; text-align: right; }
+     .prtext01 { width: 214px !important; display:block; text-align:left; float:left; font-size:18px; margin-left:15px}
+   </style>
+   <script type="text/javascript">
+   $(function(){
+	    <#if (item.addressP)?? &&item.addressP?length gt 1 && (item.addressC)?? && item.addressC?length gt 1>
+	    loadData(addressP,${(item.addressP)},addressC,${(item.addressC)});
+	    <#else>
+	    loadData(addressP,000000,addressC,000000);
+	    </#if>
+	    
+	    $('#userLeftLi3').addClass("user_left_hover");
+	    $("#commitBtn").click(function(){
+	      $("#commitBtn").attr("disabled","disabled");
+	      $("#tableForm").submit();
+	    });
+	    $('#tableForm').validate({
+	        rules : {
+	            /* "projectName" : {
+	                required : true
+	            }, */
+	            "companyName" : {
+	                required : true
+	            },
+	            "addressP" : {
+	                required : true
+	            },
+	            "addressC" : {
+	                required : true
+	            },
+	            "industry" : {
+	                required : true
+	            },
+	            "stage" : {
+	                required : true
+	            },
+	            "financingAmount" : {
+	                required : true,
+	                number : true,
+	                min : 0,
+	                max : 9999999.9999
+	            },
+	            "investExit" : {
+	            	    required : true
+	            },
+	            "accountScaleMin" : {  
+	                number : true,
+	                min : 0,
+	                max : 9999999.9999
+	            },
+	            "accountPositionMax" : {
+	                number : true,
+	                min : 0,
+	                max : 9999999.9999
+	            },
+	            "accountPurpose":{
+	            	    required : true
+	            }
+	        },  
+	        submitHandler: function(formTar){
+	            var urlStr = "/personal/project_release.jspx";
+	            var serialStr = $("#tableForm").serializeJSON();  
+	            //省名
+	            serialStr['provinceName'] = $("#addressP :selected").text();
+	            //市名
+	            serialStr['cityName'] = $("#addressC :selected").text();
+	            $.ajax({
+	                type:'post',  
+	                url:urlStr,  
+	                data:serialStr,
+	                async : false, 
+	                success:function(data){
+	                  alert("success");
+	                }
+	            });
+	            $("#commitBtn").removeAttr("disabled");
+	        },
+	        showErrors: function(errorMap, errorList) {  
+	            var msg = "";  
+	            $.each( errorList, function(i,v){  
+	              msg += (v.message+"\r\n");  
+	            });  
+	            if(msg!="") alert(msg);
+	            $("#commitBtn").removeAttr("disabled");
+	        },
+	        onfocusout : false,
+	        onkeyup : false,
+	        onclick : false
+	    });
+	    function clearNoNum(obj) {  
+	        obj.value = obj.value.replace(/[^\d.]/g,"");
+	        obj.value = obj.value.replace(/^\./g,"");  
+	        obj.value = obj.value.replace(/\.{2,}/g,".");
+	        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");  
+	        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d\d\d).*$/,'$1$2.$3');
+	    }
+   });
+   </script>
+</head>
+<body>
+    <header>
+        <div class="head">
+            <img src="/${res}/img/logo.png">
+            <ul>
+                <li class="active">首页</li>
+                <li><a class="color-dfbc6f" href="newsCenter.html">新金融企业联盟</a></li>
+                <li><a class="color-dfbc6f" href="news.html">诸商金融服务中心</a></li>
+                <li><a class="color-dfbc6f" href="">投融资信息互动平台</a></li>
+                <li><a class="color-dfbc6f" href="">活动</a></li>
+                <li><a class="color-dfbc6f" href="">资讯</a></li>
+            </ul>
+            <div class="login">
+                <img src="/${res}/img/loginIcon.png">
+                <span>登录</span>
+                <span>注册</span>
+            </div>
+            <div class="logining">
+                <img src="/${res}/img/loginIcon.png">
+                <span>会员</span>
+                <span>退出</span>
+            </div>
+        </div>
+    </header>
+    <section class="body_bg">
+     <form id="tableForm" action="/personal/project_release.jspx" method="post">
+           <div class="u_content">
+                 <div class="user_left">
+                      <ul>
+                           <#include "../include/user_left.html"/>
+                      </ul>
+                 </div>
+                 <div class="user_right">
+                      <div class="renx"><span>发布项目</span></div>
+                      <!---------->
+                      <div class="usertab">
+                            <table>
+                                <tr>
+                                  <td width="130" valign="top"><i>*</i>公司名称：</td>
+                                  <td width="770"><input id="companyName" name="companyName" type="text" class="ustext_1 left" value="${(item.companyName)!}" placeholder="请输入公司名称"></td>
+                                </tr>
+                                <tr>
+                                  <td valign="top"><i>*</i>公司地址：</td>
+                                  <td>
+                                  <div class="add">
+                                  <select id="addressP" name="addressP" class="ustext03 left" style="margin-right:10px;" onchange="chgProvinces(addressP,addressC)">
+                                  <option value="">选择省</option>
+                                  </select>
+                                  <select id="addressC" name="addressCS" class="ustext03 left">
+                                  <option value="">选择市</option>
+                                  </select>
+                                  </div>
+                                  <br>
+                                  <input id="addressD" name="addressD" type="text" class="ustext_1 martop left" value="${(item.companyAddressDetail)!}" placeholder="请输入项目所在地详细地址">
+                                  </td>
+                               </tr>
+                                <tr>
+                                  <td><i>*</i>所属阶断：</td>
+                                  <td><select id="stage" name="stage" class="fbtext_2 left" >
+                                  <option value="">请选择</option>
+                                  <#if investFiledList??>
+	                                  	<#list investFiledList as investFiled>
+		                                  	<#if (item.industry)??>
+		                                  		<#assign industryArray = (item.industry?split(","))/>
+		                                  		<option value="${investFiled.value!}" <#if industryArray?seq_contains(investFiled.value)>selected="selected"</#if>>${investFiled.name!}</option>
+		                                  	<#else>
+		                                  	<option value="${investFiled.value!}">${investFiled.name!}</option>
+		                                  	</#if>
+	                                  	</#list>
+	                                  </#if>
+                                  </select></td>
+                               </tr>
+                               <tr>
+                                  <td><i>*</i>所属行业：</td>
+                                  <td><select id="industry" name="industry" class="fbtext_2 left" >
+                                  <option value="">请选择</option>
+                                  <#if investStageList??>
+	                                  	<#list investStageList as investStage>
+		                                  	<#if (item.stage)??>
+		                                  		<#assign stageArray = (item.stage?split(","))/>
+		                                  		<option value="${investStage.value!}" <#if stageArray?seq_contains(investStage.value)>selected="selected"</#if>>${investStage.name!}</option>
+		                                  	<#else>
+		                                  	<option value="${investStage.value!}">${investStage.name!}</option>
+		                                  	</#if>
+	                                  	</#list>
+	                                  </#if>
+                                  </select></td>
+                               </tr>
+                               <tr>
+                                  <td valign="top">管理团队情况：</td>
+                                  <td><textarea id="teamStand" name="teamStand" cols="" rows="" class="zrtextarea left" placeholder="管理团队情况">${(item.teamStand)!}</textarea></td>
+                               </tr>
+                               <tr>
+                                  <td width="130" valign="top"><i>*</i>融资额度：</td>
+                                  <td><span class="prtext"><input id="financingAmount" onkeyup="clearNoNum(this)" name="financingAmount" type="text" class="ustbord02" value="${(item.financingAmount)!}">万元</span>
+                                  <span class="prtext01"><input id="discussFinancing" name="discussFinancing" <#if (item.financingAmount)??><#else>checked="true"</#if> type="checkbox" value="1">面议</span></td>
+                               </tr>
+                               <tr>
+                                  <td valign="top">资金方占股比例：</td>
+                                  <td><span class="ustext05a"><input id="accountScaleMin" onkeyup="clearNoNum(this)" name="accountScaleMin" type="text" value="${(item.accountScaleMin)!}" class="ustbord02">%</span><b class="left">~</b>
+                                  <span class="ustext05a"><input id="accountPositionMax" onkeyup="clearNoNum(this)" name="accountPositionMax" type="text" value="${(item.accountPositionMax)!}" class="ustbord02">%</span></td>
+                               </tr> 
+                               <tr>
+                                  <td><i>*</i>投资退出方式：</td>
+                                  <td><select id="investExit" name="investExit" class="fbtext_2 left">
+		                                  	<#if (item.investExit)??>
+		                                  		<option value="${item.investExit!}">${item.investExit!}</option>
+		                                  	<#else>
+		                                  	<option value="${investStage.value!}">${investStage.name!}</option>
+		                                  	</#if>
+                                  </select></td>
+                               </tr>
+                               <tr>
+                                  <td valign="top"><i>*</i>资金用途：</td>
+                                  <td><textarea id="accountPurpose" name="accountPurpose" cols="" rows="" class="zrtextarea left" placeholder="资金用途">${(item.accountPurpose)!}</textarea></td>
+                               </tr> 
+                                <tr>
+                                  <td valign="top">项目情况介绍：</td>
+                                  <td><textarea id="projectSituation" name="projectSituation" cols="" rows="" class="zrtextarea left" placeholder="公司、项目介绍、市场容量、市场地位等等">${(item.projectSituation!}</textarea></td>
+                               </tr>
+                                <tr>
+                                  <td valign="top">项目优势：</td>
+                                  <td><textarea id="projectAdvantage" name="projectAdvantage" cols="" rows="" class="zrtextarea left">${(item.projectAdvantage!}</textarea></td>
+                               </tr>
+                               <tr>
+                                  <td valign="top">备注：</td>
+                                  <td><textarea id="notes" name="notes" cols="" rows="" class="zrtextarea left">${(item.notes!}</textarea></td>
+                               </tr>
+                               <tr>
+                                  <td></td>
+                                  <td><button id="commitBtn"  class="button left" type="button" style="margin-left:250px;">发布</button></td>
+                               </tr>
+                            </table>
+                       </div>             
+                      <!---------->
+           </div>
+           </div>
+                   </form>
+    </section>
+    <footer>
+        <div class="foot">
+            <div class="floatLeft entrys">
+                <table>
+                    <tr>
+                        <td><a href="">首页</a></td>
+                        <td><a href="">活动中心</a></td>
+                        <td><a href="">资讯中心</a></td>
+                        <td><a href="">帮助中心</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a href="">沙龙活动</a></td>
+                        <td><a href="">最新资讯</a></td>
+                        <td><a href="">申请入驻</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a href="">金融教育</a></td>
+                        <td><a href="">政策解读</a></td>
+                        <td><a href="">联系我们</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a href="">项目路演</a></td>
+                        <td><a href=""></a></td>
+                        <td><a href="">意见反馈</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="line floatLeft"></div>
+            <div class="floatRight qrCode">
+                <div class="floatRight mgl-50">
+                    <img src="/${res}/img/service.png">
+                    <div>服务号二维码</div>
+                </div>
+                <div class="floatRight">
+                    <img src="/${res}/img/subscribe.png">
+                    <div>订阅号二维码</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

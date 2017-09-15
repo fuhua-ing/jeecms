@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>投资人详情</title>
+    <link rel="stylesheet" type="text/css" href="/${res}/css/common_grzx.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/newsCenter.css">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+</head>
+<body>
+    <#include "../include/header.html"/>
+    <section>
+           <div class="xx_content">
+                <div class="xx_tit"><a href="javascript:history.back();">< 返回</a></div>   
+                 <div class="xx_left">
+                       <div class="xx_left01">
+                               <div class="xx_center">
+                                     <h1>${(item.realName)!}<span></h1>
+                                     <div class="xxtouzi">${(item.companyPost)!}</div>
+                                     <h2>
+                                        <font>
+                                        <i>投资阶段性：</i>
+                                        <#if (item.investStage)??>
+                                          <#if investStageList??>
+                                            <#assign investStageArray = item.investStage?split(",")/>
+                                            <#list investStageArray as stage>
+                                              <#list investStageList as investStage>
+                                                <#if investStage.value==stage>
+                                                  ${investStage.name!}
+                                                </#if>
+                                              </#list>
+                                              <#if investStageArray?size!=stage_index+1>
+                                                、
+                                              </#if>
+                                            </#list>
+                                          <#else>
+                                          ${item.investStage}
+                                          </#if>
+                                        </#if>
+                                        </font>
+                                        <font>
+                                        <i>意象投资行业：</i>
+                                        <#if (item.intentionIndustry)??>
+                                          <#if investFiledList??>
+                                            <#assign intentionIndustryArray = item.intentionIndustry?split(",")/>
+                                            <#list intentionIndustryArray as intentionIndustry>
+                                              <#list investFiledList as investFiled>
+                                                <#if investFiled.value==intentionIndustry>
+                                                  ${investFiled.name!}
+                                                </#if>
+                                              </#list>
+                                              <#if intentionIndustryArray?size!=intentionIndustry_index+1>
+                                                、
+                                              </#if>
+                                            </#list>
+                                          <#else>
+                                          ${item.intentionIndustry}
+                                          </#if>
+                                        </#if>
+                                        <font><i>单个项目投资额：</i>
+                                        <#if (item.investMin)?? && item.investMin?length gt 0 && (item.investMax)?? && item.investMax?length gt 0>
+                                        ${item.investMin}万~${item.investMax}万
+                                        <#else>
+                                        面议
+                                        </#if>
+                                        </font>
+                                        <font><i>单个项目参股比例：</i>
+                                        <#if (item.holdStockRatioMin)?? && item.holdStockRatioMin?length gt 0 && (item.holdStockRatioMax)?? && item.holdStockRatioMax?length gt 0>
+                                        ${item.holdStockRatioMin}%-${item.holdStockRatioMax}%
+                                        <#else>
+                                        面议
+                                        </#if>
+                                        </font>
+                                     </h2>
+                               </div>
+                                      
+                       </div>
+                       <div class="xx_left01">
+                             <div class="xx_center">     
+                                  <div class="xx_name">投资信息</div>
+                                  <div class="xx_neirong">
+                                        <h3>成功投资案例</h3>
+                                        <p>${(item.successCase)!}</p>
+                                        <h3>备注</h3>
+                                        <p>${(item.comment)!}</p>
+                                  </div>
+                             </div>
+                       </div>
+                 </div>
+                 <!---->
+                 <div class="xx_right">
+                      <div class="xx_rcent">
+                           <div class="xx_ric">
+                                <div class="photo">
+                                    <#if (userInfo.userImg)??>
+                                    <img src="${userInfo.userImg}">
+                                    <#else>
+                                    <img src="/${res}/img/uploadPic.png">
+                                    </#if>
+                                    ${(userInfo.realname)!}
+                                </div> 
+                                <h2>公司：${(userInfo.companyName)!}</h2>
+                                <h2>地区：${(userInfo.provinceName)!}${(userInfo.cityName)!}</h2>
+                                <h2>所属行业：
+                                <#if (userInfo.industry)??>
+                                  <#if investFiledList??>
+                                    <#list investFiledList as investFiled>
+                                      <#if investFiled.value==userInfo.industry>
+                                      ${investFiled.name}
+                                      </#if>
+                                    </#list>
+                                  <#else>
+                                    ${userInfo.industry!}
+                                  </#if>
+                                </#if></h2>
+                                <h2>联系方式：<i>${(userInfo.mobile)!}</i></h2>
+                           </div>
+                      </div>
+                 </div>
+                 <!---->
+           </div>
+    </section>
+    <#include "../include/footer.html"/>
+</body>
+</html>

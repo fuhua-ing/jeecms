@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>${site.name}</title>
+    <meta http-equiv="keywords" content="${site.keywords!}"/>
+    <meta http-equiv="description" content="${site.description!}"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="/${res}/css/newsCenter.css">
+</head>
+<body>
+	[#include "../include/header.html"/]
+	<div class="pic">
+			<img src="/${res}/img/banner-3.png">
+	</div>
+	<section>
+		<div class="content-list">
+		    <ul class="list-title" style="width: 350px;">
+		        <div class="clear"></div>
+		        [@cms_channel_list parentId='101']
+                [#list tag_list as c]
+                    [#if c_index==0]
+                    <li class="tabBtn tabActive">${c.name}</li>
+                    [#else]
+				    <li class="tabBtn">${c.name}</li>
+				    [/#if]
+				[/#list]
+			    [/@cms_channel_list]
+		        <div class="clear"></div>
+		    </ul>
+		</div>
+		<div class='forTab on'>
+		    <div class="selectdiv"> 
+			    <input class="selectbox" placeholder="请输入您想搜索的相关内容" type="text" />
+			    <img class="selectimg" src="/${res}/img/selectimg.png" />
+			</div>
+			<div class="itemsList">
+		    [@cms_content_page count='10' sysPage='1' orderBy='4' titLen='20' append='...' channelId='103' channelOption='0' pageStyle="padding:20px 0;text-align:center"]
+		    [#list tag_list as c]
+		    <div class="items">
+			            <div class="itemsimg">
+			                <a href="${c.url}" target="_blank"><img src="${c.titleImg!site.defImg}" /></a>
+			            </div>
+			            <div class="itemsDetail">
+			                <div class="detailTop">
+			                    <a href="${c.url}" target="_blank"><p>${c.title}</p></a>
+			                    <div class="joinActivity">
+			                        <img src="/${res}/img/join.png" />
+			                    </div>
+			                </div>
+			                <div class="detailMain">
+			                   <a href="${c.url}" target="_blank"> <p>${c.description!''}</p></a>
+			                </div>
+			            </div>
+			            <div class="clear"></div>
+			        </div>
+			[/#list]  
+            [/@cms_content_page] 
+            </div>
+		</div>
+		<div class="forTab">
+			<div class="selectdiv"> 
+			    <input class="selectbox" placeholder="请输入您想搜索的相关内容" type="text" />
+			    <img class="selectimg" src="/${res}/img/selectimg.png" />
+			</div>
+			<div class="itemsList">
+		    [@cms_content_page count='10' sysPage='1' orderBy='4' titLen='20' append='...' channelId='105' channelOption='0' pageStyle="padding:20px 0;text-align:center"]
+		    [#list tag_list as c]
+		    <div class="items">
+			            <div class="itemsimg">
+			                <a href="${c.url}" target="_blank"><img src="${c.titleImg!site.defImg}" /></a>
+			            </div>
+			            <div class="itemsDetail">
+			                <div class="detailTop">
+			                    <a href="${c.url}" target="_blank"><p>${c.title}</p></a>
+			                    <div class="joinActivity">
+			                        <img src="/${res}/img/join.png" />
+			                    </div>
+			                </div>
+			                <div class="detailMain">
+			                   <a href="${c.url}" target="_blank"> <p>${c.description!''}</p></a>
+			                </div>
+			            </div>
+			            <div class="clear"></div>
+			        </div>
+			[/#list]  
+            [/@cms_content_page] 
+            </div>
+		</div>
+	</section>
+	[#include "../include/footer.html"/]
+</body>
+</html>

@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>${site.name}</title>
+    <meta http-equiv="keywords" content="${site.keywords!}"/>
+    <meta http-equiv="description" content="${site.description!}"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="/${res}/css/standard.css">
+</head>
+<body>
+      [#include "../include/header.html"/]
+      <div class="pic">
+			<img src="/${res}/img/newCenter.png">
+	  </div>
+	  <section class="content">
+		<div class="title">
+			<img src="/${res}/img/leaf.png">
+			<span>诸商金融服务中心介绍</span>
+		</div>
+		[@cms_content id='213']${tag_bean.txt}[/@cms_content]</li>
+		<div class="title aSty">
+			<img src="/${res}/img/leaf.png">
+			<span>服务内容</span>
+		</div>
+		[@cms_content id='214']${tag_bean.txt}[/@cms_content]</li>
+		<div class="trendsSearch">
+<!-- 	        <input type="text" placeholder="请输入您想搜索的相关人员"> -->
+<!-- 	        <img src="/${res}/img/search.png"> -->
+	    </div>
+	    <div class="center">
+		    <span class="leftA">
+		    	<img src="/${res}/img/leftA.png">
+		    </span>
+		    <span class="rightA">
+		    	<img src="/${res}/img/rightA.png">
+		    </span>
+	    	<div style="overflow: hidden;">
+	    		<div class="aBox">
+	    		    [@cms_content_list count='9' orderBy='4' titLen='30' channelId='94' channelOption='0' image='1']
+	    		    [#list tag_list as c]
+	    		    <a href="${c.url}" target="_blank">
+	    		    <div class="centeritem">
+						<div><img src="${c.titleImg!site.defImg}"></div>
+						<div class="itemName">${c.title!''}</div>
+						<p>${c.description!''}</p>
+					</div>
+					</a>
+	    		    [/#list]  
+                    [/@cms_content_list]
+				</div>
+	    	</div>
+		</div>
+		<div class="criSty">
+			<span class="criItem on"></span>
+			<span class="criItem"></span>
+			<span class="criItem"></span>
+		</div>
+	</section>
+	[#include "../include/footer.html"/]
+</body>
+<script type="text/javascript">
+	var setCri = function(index){
+		var lists = document.getElementsByClassName('criItem');
+		for(var i=0;i<lists.length;i++){
+			lists[i].classList.remove('on');
+		}
+		lists[index].classList.add('on');
+	}
+	var n = 0;
+	var amin = function(n){
+		document.querySelector('.aBox').style.transform = 'translateX(' + n + 'px)';
+	}
+	document.querySelector('.leftA').onclick = function(){
+		if(n>=(-1590)&&n<0){
+			n = n + 795;
+			amin(n);
+			setCri(Math.abs(n)/795);
+		}
+	}
+	document.querySelector('.rightA').onclick = function(){
+		if(n>=(-795)&&n<=0){
+			n = n - 795;
+			amin(n);
+			setCri(Math.abs(n)/795);
+		}
+	}
+
+	document.querySelector('.criSty').addEventListener('click',function(e){
+		if(e.target.tagName == 'SPAN'){
+			var lists = document.getElementsByClassName('criItem');
+			
+			for(var i=0;i<lists.length;i++){
+				lists[i].classList.remove('on');
+				if(e.target == lists[i]){
+					n = - i*795;
+					amin(n)
+				}
+			}
+			e.target.classList.add('on')
+		}
+	});
+</script>
+</html>

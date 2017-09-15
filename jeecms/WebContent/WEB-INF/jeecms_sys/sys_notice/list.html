@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Contensst-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function(){
+	$('#sendNotice').click(function(){
+		window.location.href="o_detail.do";
+	});
+});
+</script>
+</head>
+<body>
+<div class="page-positon ove">
+  <div class="position-div"><@s.m "global.position"/>: <@s.m "cmsMessage.sysNotice"/> > <@s.m "global.list"/></div>
+</div>
+<div class="body-box">
+	<form action="v_list.do" method="get">
+		<div style="padding-bottom:10px; text-indent:6px;">
+		<@s.m "sysNotice.title"/>: <input type="text" name="queryTitle" value="${queryTitle!}" style="width:100px; margin-right:10px;"/>
+		<input class="query" type="submit" value='<@s.m "global.query"/>'/>
+		<input id="sendNotice" class="query" style="width:100px;" type="button" value='<@s.m "sysNotice.sendSysNotice"/>'/>
+		</div>
+	</form>
+	<form id="tableForm" method="post">
+	<input type="hidden" name="pageNo" value="${pageNo!}"/>
+	<input type="hidden" name="pageNo" value="${pageSize!}"/>
+	<@p.table value=pagination;item,i,has_next><#rt/>
+		<@p.column title="ID">${item.id}</@p.column><#t/>
+		<@p.column code="sysNotice.title">${(item.title)!}</@p.column><#t/>
+		<@p.column code="sysNotice.userType">
+			<#if (item.recvUserType)??>
+				<#if userTypeList??>
+					<#assign recvUserTypeList=item.recvUserType?split(",")/>
+					<#list recvUserTypeList as recvUserType>
+						<#list userTypeList as userType>
+							<#if userType.value==recvUserType>
+							${userType.name}
+							</#if>
+						</#list>
+						<#if recvUserTypeList?size != (recvUserType_index+1)>
+						、
+						</#if>
+					</#list>
+				<#else>
+					${(item.recvUserType)!}
+				</#if>
+			</#if>
+		</@p.column><#t/>
+		<#if item.createTime??>
+			<@p.column code="sysNotice.sendTime">${item.createTime?string('yyyy-MM-dd HH:mm:ss')}</@p.column><#t/>
+		<#else>
+			<@p.column code="sysNotice.sendTime"></@p.column><#t/>
+		</#if>		
+		<@p.column code="global.operate" align="center">
+			<a href="o_detail.do?id=${item.id}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+			<a href="o_delete.do?ids=${item.id}&pageNo=${pageNo!}" onclick="if(!$.confirmToUrl(this.href)) {return false;}" class="pn-opt"><@s.m "global.delete"/></a>
+		</@p.column><#t/>
+	</@p.table>
+	</form>
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+</html>

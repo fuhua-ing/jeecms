@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+<style type="text/css">
+.button{
+	margin-left: 40px;
+	margin-top:  80px;
+}
+</style>
+</head>
+<body>
+<div class="page-positon ove">
+  <div class="position-div"><@s.m "global.position"/>: <@s.m "cmsSite.corp.manager"/> > <@s.m "global.check"/></div>
+</div>
+<div class="body-box">
+<div>
+	<div><span>审核记录</span></div>
+	<div>操作人:<input value="${jcCorp.corpAuditPerson!}" /></div>
+	<div>操作时间:<input value="${jcCorp.corpAuditTime!}" /></div>
+	<#if jcCorp.corpAudit==1>
+	<div>审核结果:<input value="${jcCorp.corpAuditReason!}" /></div>
+	<#else>
+	<div>审核失败原因:<input value="${jcCorp.corpAuditReason!}" /></div>
+	</#if>
+</div>
+
+<div style="display: none"><span></span><input id="corpId" value="${jcCorp.corpId}" /></div>
+<div><span>企业名称:</span><input id="corpName" value="${jcCorp.corpName}" /></div>
+<div><span>法定代表人:</span><input value="${jcCorp.corpLegalPerson}" /></div>
+<div><span>联系电话:</span><input value="${jcCorp.corpLegalPersonTel}" /></div>
+<div><span>注册资金:</span><input value="${jcCorp.corpRegisteredFunds}" /></div>
+<div><span>实到资金:</span><input value="${jcCorp.corpTrueFunds}" /></div>
+<div><span>经营范围:</span><input value="${jcCorp.corpManageScope}" /></div>
+<div><span>电话:</span><input value="${jcCorp.corpFixedTel}" /></div>
+<div><span>传真:</span><input value="${jcCorp.corpFax}" /></div>
+<div><span>网站:</span><input value="${jcCorp.corpHomepage}" /></div>
+<div><span>微信:</span><input value="${jcCorp.corpWechat}" /></div>
+<div><span>企业主经营业务范围:</span><input value="${jcCorp.corpMainBusiness}" /></div>
+<div><span>现阶段业务经营情况:</span><input value="${jcCorp.corpSituationBusiness}" /></div>
+<div><span>业务开展计划:</span><input value="${jcCorp.corpPlanBusiness}" /></div>
+<span>股东及高层管理信息:</span>
+<table style="border-spacing: 0;">   
+          <tr>
+              <td style="border:1px solid">股东姓名</td>  
+             <td style="border:1px solid">目前实缴注册资本金(万元)</td>  
+              <td style="border:1px solid">比例</td>  
+              <td style="border:1px solid">出资方式(货币/实物/无形资产)</td>  
+          </tr>
+<#if list??>
+   <#list list as index>  
+          <tr>  
+             <td style="border:1px solid">${index.shareholderName}</td>  
+             <td style="border:1px solid">${index.shareholderDonate}</td>  
+              <td style="border:1px solid">${index.shareholderPercent}</td>  
+              <td style="border:1px solid">${index.shareholderPaytype}</td>  
+         </tr>   
+     </#list>  
+   </#if>  
+</table>  
+
+
+<div><span>董事长姓名:</span><input value="${jcCorp.corpChairman}" /></div>
+<div><span>董事长联系方式:</span><input value="${jcCorp.corpChairmanTel}" /></div>
+<div><span>总经理姓名:</span><input value="${jcCorp.corpGeneralManager}" /></div>
+<div><span>总经理联系方式:</span><input value="${jcCorp.corpGeneralManagerTel}" /></div>
+<div><span>人员架构:</span><input value="${jcCorp.corpOrganizationStructure}" /></div>
+<div><span>管理结构:</span><input value="${jcCorp.corpManagementStructure}" /></div>
+<div><span>营业执照:</span><input value="${jcCorp.corpLicense}" /></div>
+
+<div><span id="back" class="button">返回</span></div>
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+
+</html>
+<script type="text/javascript">
+$("#checkPass").click(function(){
+	var id = $("#corpId").val();
+	value={
+		id:id,
+		pass:true
+		};
+	alert(id); 
+		$.ajax({
+		url : 'manager_checkpass.do',
+		type : 'post',
+		data : value,
+		async : false, // 默认为true 异步
+		error : function() {
+			alert('error');
+		},
+		success : function(data) {
+			alert(data);
+			window.location.href="manager_membercheck.do";
+		}
+	});
+});
+$("#checkRefeusd").click(function(){
+	var id = $("#corpId").val();
+	value={
+		id:id,
+		pass:false
+		};
+	alert(id); 
+		$.ajax({
+		url : 'manager_checkpass.do',
+		type : 'post',
+		data : value,
+		async : false, // 默认为true 异步
+		error : function() {
+			alert('error');
+		},
+		success : function(data) {
+			alert(data);
+			window.location.href="manager_membercheck.do";
+		}
+	});
+});
+$("#back").click(function(){
+	window.location.href="manager_membercheck.do";
+});
+</script>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>${site.name}</title>
+    <meta http-equiv="keywords" content="${site.keywords!}"/>
+    <meta http-equiv="description" content="${site.description!}"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/member.css">
+</head>
+<body>
+    <header>
+        <div class="head">
+            <img src="/${res}/img/logo.png">
+            <ul>
+               <li><a class="color-dfbc6f" href="${site.url!}">首页</a></li>
+                <li>[@cms_channel id='94']<a class="color-dfbc6f" href="${tag_bean.url}">咨讯中心</a>[/@cms_channel]</li>
+		<li>[@cms_channel id='101']<a class="color-dfbc6f" href="${tag_bean.url}">最新动态</a>[/@cms_channel]</li>
+                 [#if content.channelId==channel.id]<li class="active">[#else]<li>[@cms_channel id='101']<a class="color-dfbc6f" href="${tag_bean.url}">[/#if]会员中心</li>
+            </ul>
+            <div class="login">
+                <img src="/${res}/img/loginIcon.png">
+                <span>会员登录</span>
+            </div>
+        </div>
+        <div class="pic">
+            <img src="/${res}/img/banner-4.png">
+        </div>
+    </header>
+    <section id="member">
+        <div class="trends">
+            <span class="tabBtn ">申请入驻</span>
+            <span class="tabBtn tabActive">联系我们</span>
+            <span class="tabBtn">意见反馈</span>
+        </div>
+        <div class="memberContent"></div>
+        <div class="memberContent memberActive ">
+            <div class="talkContent">
+             <span>咨询电话: 0575-88598770</span><br />
+            <span>地址: 浙江省诸暨市陶朱街道良艮塔西路138号新金融大厦副楼2楼</span>
+            </div>
+           
+        </div>
+        <div class="memberContent">
+            <div class="advice">
+                <span>希望您对我们对的工作进行有效的反馈，对于您提出的宝贵建议，我们一定会进行采纳及更改，如果您在使用中对于我们的服务有质疑，我们也欢迎您提出，谢谢</span><br />
+                <textarea></textarea>
+                <button id="subBtn">提交反馈</button>	
+            </div>
+        </div>
+    </section>
+    [#include "../include/footer.html"/]
+</body>
+<script type="text/javascript">
+	/*会员中心*/
+	var member = document.getElementById('member');
+	var tabList = member.getElementsByClassName('tabBtn');
+	var contentList = member.getElementsByClassName('memberContent');
+	for (var i = 0; i < tabList.length; i++) {
+		(function(arg){
+			tabList[i].onclick = function(){
+				var num = arg;
+				if(!this.classList.contains("tabActive")){
+					document.getElementsByClassName("tabActive")[0].classList.remove('tabActive');
+					this.classList.add('tabActive');}
+				for (var i = 0; i < contentList.length; i++) {
+					contentList[i].style.display = "none";
+				}
+				contentList[num].style.display = "block";
+			}
+		})(i)
+	}
+	</script>
+
+
+</html>

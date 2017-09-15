@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2017-8-18 15:29:17 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.core.entity">
+    <class name="ProjectRelease" table="jc_project_release">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cmsUser" class="CmsUser" fetch="select" not-found="ignore">
+            <column name="user_id">
+                <comment>USER关联ID</comment>
+            </column>
+        </many-to-one>
+        <property name="projectName" type="string">
+            <column name="project_name">
+                <comment>项目名称</comment>
+            </column>
+        </property>
+        <property name="companyName" type="string">
+            <column length="100" name="company_name">
+                <comment>公司名称</comment>
+            </column>
+        </property>
+        <property name="addressP" type="string">
+            <column name="company_address_province">
+                <comment>公司地址-省</comment>
+            </column>
+        </property>
+        <property name="provinceName" type="string">
+            <column name="province_name">
+            </column>
+        </property>
+        <property name="addressC" type="string">
+            <column name="company_address_city">
+                <comment>公司地址-市</comment>
+            </column>
+        </property>
+        <property name="cityName" type="string">
+            <column name="city_name">
+            </column>
+        </property>
+        <property name="addressD" type="string">
+            <column length="100" name="company_address_detail">
+                <comment>公司具体地址</comment>
+            </column>
+        </property>
+        <property name="stage" type="string">
+            <column name="stage">
+                <comment>所属阶段(0:种子期;1:成长期;2:扩张期;3:成熟期;4:Pre-IPO)</comment>
+            </column>
+        </property>
+        <property name="industry" type="string">
+            <column name="industry">
+                <comment>所属行业(0:互联网;1:文化传媒;2:科学研究和技术服务业;3:先进制造;4:金融业;5:新能源;6:新材料;7:教育;8:生物制药;9:节能环保;10:医疗器械;11:其他)</comment>
+            </column>
+        </property>
+        <property name="otherIndustry" type="string">
+            <column length="100" name="other_industry">
+                <comment>其他行业</comment>
+            </column>
+        </property>
+        <property name="teamStand" type="string">
+            <column length="1000" name="team_stand">
+                <comment>管理团队情况</comment>
+            </column>
+        </property>
+        <property name="financingAmount" type="java.lang.Double">
+            <column name="financing_amount" precision="15" scale="4">
+                <comment>融资金额</comment>
+            </column>
+        </property>
+        <property name="financingYear" type="java.lang.Integer">
+            <column name="financing_year" >
+                <comment>融资年限</comment>
+            </column>
+        </property>
+        <property name="discussFinancing" type="java.lang.Byte">
+            <column name="discuss_financing">
+                <comment>是否面议(0:否;1:是)</comment>
+            </column>
+        </property>
+        <property name="accountScaleMin" type="java.lang.Double">
+            <column name="account_scale_min" precision="15">
+                <comment>资金方占股比例最小值</comment>
+            </column>
+        </property>
+        <property name="accountPositionMax" type="java.lang.Double">
+            <column name="account_position_max" precision="15">
+                <comment>资金方占股比例最大值</comment>
+            </column>
+        </property>
+        <property name="investExit" type="string">
+            <column name="invest_exit">
+                <comment>投资退出方式(0:种子期;1:成长期;2:扩张期;3:成熟期;4:Pre-IPO)</comment>
+            </column>
+        </property>
+        <property name="discussExit" type="java.lang.Byte">
+            <column name="discuss_exit">
+                <comment>是否面议(0:否;1:是)</comment>
+            </column>
+        </property>
+        <property name="accountPurpose" type="string">
+            <column length="1000" name="account_purpose">
+                <comment>资金用途</comment>
+            </column>
+        </property>
+        <property name="projectSituation" type="string">
+            <column length="1000" name="project_situation">
+                <comment>项目情况介绍</comment>
+            </column>
+        </property>
+        <property name="projectAdvantage" type="string">
+            <column length="1000" name="project_advantage">
+                <comment>项目优势</comment>
+            </column>
+        </property>
+        <property name="notes" type="string">
+            <column length="1000" name="notes">
+                <comment>备注</comment>
+            </column>
+        </property>
+        <property name="checkStatus" type="java.lang.Byte">
+            <column name="check_status">
+                <comment>审核状态</comment>
+            </column>
+        </property>
+        <property name="showStatus" type="java.lang.Byte">
+            <column name="show_status">
+                <comment>展示状态</comment>
+            </column>
+        </property>
+        <property name="createTime" type="timestamp">
+            <column length="19" name="create_time">
+                <comment>创建时间</comment>
+            </column>
+        </property>
+        <property name="checkTime" type="timestamp">
+            <column name="check_time">
+                <comment>审核时间</comment>
+            </column>
+        </property>
+        <property name="reason" type="java.lang.String">
+            <column name="reason">
+                <comment>原因</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>项目管理</title>
+    <link rel="stylesheet" type="text/css" href="/${res}/css/common_grzx.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/index.css">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+  	<script src="${resSys}/front.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function(){
+        $('#userLeftLi5').addClass("user_left_hover");
+      });
+    </script>
+</head>
+<body>
+    <#include "../include/header.html"/>
+    <section class="body_bg">
+           <div class="u_content">
+                 <div class="user_left">
+                      <ul>
+                           <#include "../include/user_left.html"/>
+                      </ul>
+                 </div>
+                 <div class="user_right">
+                      <div class="renx"><span>项目管理</span></div>
+                      <!---------->
+                      <div class="guanli">
+                           <a href="../projectManager/page.jspx?tab=1">我发起的项目</a>
+                           <a href="../projectManager/page.jspx?tab=2" class="guanli_h">我发起的转让（<span>${(pagination.totalCount)!'0'}</span>）</a>
+                           <a href="../projectManager/page.jspx?tab=3">感兴趣的项目</a>
+                      </div>
+                      <form id="tableForm">
+                      <input type="hidden" name="tab" value="2"/>
+                      <div class="guan_body" style="margin-top:-30px;">
+                      		<#if (pagination.totalCount)??&&(pagination.totalCount > 0)>
+                      			<div class="guan_zw">
+							               <div class="user_right">
+				                      <div class="xiaoxi" style="margin-top:0px;width:900px;margin-left:0px;">
+				                           <div class="title01"><input onclick='selectAll("ids",this.checked)' name="" type="checkbox" value=""><span>发起的转让项目</span></div>
+				                           <div class="xiaoxi_nr" style="margin-top:0px;width:900px;">
+				                                <ul>
+				                                <#list pagination.list as item>
+				                                    <li>
+                                              <div class="qiye_top">
+                                                    <div class="leftfont lfcolor">
+                                                    <input name="ids" type="checkbox" value="${item.id}">
+                                                    ${(item.projectName)!}
+                                                    </div>
+                                                    <div class="rightfont">
+                                                          <span><img src="/${res}/img/xicon.png">${(item.cityName)!}</span>
+                                                          <span><img src="/${res}/img/timecon.png">${item.applyTime?string('yyyy-MM-dd HH:mm:ss')}</span>
+                                                    </div>
+                                              </div> 
+                                              <div class="qiye_down">
+                                                   <div class="cent">
+                                                        <div class="centleft">
+                                                             <span>企业名称</span>
+                                                             <font>${(item.companyName)!}</font>
+                                                        </div>
+                                                        <div class="centleft">
+                                                             <span>转让份额</span>
+                                                             <#if (item.transferStockRatio)?? && item.transferStockRatio?length gt 0>
+                                                             <font>${item.transferStockRatio}万</font>
+                                                             <#else>
+                                                             <font></font>
+                                                             </#if>
+                                                        </div>
+                                                        <div class="centleft">
+                                                             <span>股权占比</span>
+                                                             <#if (item.holdStockRatio)?? && item.holdStockRatio?length gt 0>
+                                                             <font>${item.holdStockRatio}%</font>
+                                                             <#else>
+                                                             <font></font>
+                                                             </#if>
+                                                        </div>
+                                                        <div class="centleft01">
+                                                             <img src="/${res}/img/zhuangr.png">
+                                                        </div>
+                                                        <div class="centleft01">
+                                                            <a href="/interactionFrame3/detail.jspx?id=${item.id!}" class="lotc">查看详情</a>
+                                                        </div>
+                                                   </div>
+                                              </div>
+                                           </li>
+				                                </#list>
+				                                </ul>
+				                           </div>  
+				                           <div class="xxbut" style="width:900px;">
+				                                <button class="xbutton" onclick="optDelete();">删除</button>
+				                                <div class="fenye">
+				                               	 	<input type="hidden" name="pageNo" value="${pagination.pageNo!}"/>
+				                               	 	<input type="hidden" name="pageSize" value="${pagination.pageSize!}"/>
+				                                     <a <#if pagination.firstPage> disabled="true" <#else> onclick="_gotoPage('1');" </#if>><</a>
+				                                     <#if pagination.pageNo gt 1>
+				                                     <a onclick="_gotoPage('${pagination.pageNo-1}');">${pagination.pageNo-1}</a>
+				                                     </#if>
+				                                     <a class="fenye_h" onclick="_gotoPage('${pagination.pageNo}');">${pagination.pageNo}</a>
+				                                     <#if (pagination.pageNo+1) lte pagination.totalPage>
+					                                     <a onclick="_gotoPage('${pagination.pageNo+1}');">${pagination.pageNo+1}</a>
+					                                 </#if>
+					                                 <#if (pagination.pageNo+2) == pagination.totalPage>
+				                                     	<a onclick="_gotoPage('${pagination.pageNo+2}');">${pagination.pageNo+2}</a>
+		                                 			 <#elseif (pagination.pageNo+2) lt pagination.totalPage>
+				                                     	<a>..</a>
+			                                     		<#if (pagination.pageNo+9) lte pagination.totalPage>
+			                                     		<a onclick="_gotoPage('${pagination.pageNo+9}');">${pagination.pageNo+9}</a>
+			                                     		<#else>
+			                                     		<a onclick="_gotoPage('${pagination.totalPage}');">${pagination.totalPage}</a>
+				                                     	</#if>
+				                                     </#if>
+				                                     <a <#if pagination.lastPage> disabled="true" <#else> onclick="_gotoPage('${pagination.totalPage}');"</#if>>></a>
+				                                </div>
+				                           </div>
+				                      </div>
+				                      <!---------->
+				                   </div>
+                      			</div>
+<script type="text/javascript">
+	function _gotoPage(pageNo) {
+		try{
+			var tableForm = document.getElementById("tableForm");
+			$("input[name=pageNo]").val(pageNo);
+			tableForm.action="page.jspx";
+			tableForm.onsubmit=null;
+			tableForm.submit();
+		} catch(e) {
+			
+		}
+	}
+
+	function selectAll(name,checked){
+	  $("input[type=checkbox][name=" + name + "]").each(function() {
+	    $(this).prop("checked", checked);
+	  });
+	}
+  
+	function getTableForm() {
+		return document.getElementById('tableForm');
+	}
+	function optDelete() {
+		if(checkedCount('ids')<=0) {
+      alert("<@s.m 'error.checkRecord'/>");
+			return;
+		}
+    doDelete();
+	}
+	function doDelete(){
+		var f = getTableForm();
+		f.action="deleteTransferInfo.jspx";
+		f.submit();
+	}
+  function checkedCount(name) {
+    var batchChecks = document.getElementsByName(name);
+    var count = 0;
+    for (var i = 0;i < batchChecks.length; i++) {
+      if (batchChecks[i].checked) {
+        count++;
+      }
+    }
+    return count;
+  }
+</script>
+                      		<#else>
+                      			<div class="guan_zw">暂无信息</div>
+                      		</#if>
+                            
+                      </div>
+                      </form>
+                      <!---------->
+                   </div>
+           </div>
+    </section>
+    <#include "../include/footer.html"/>
+</body>
+</html>

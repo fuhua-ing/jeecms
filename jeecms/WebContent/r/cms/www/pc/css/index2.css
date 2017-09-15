@@ -1,0 +1,159 @@
+.title{width: 500px;height: 50px;margin: 0 auto;font-size: 22px;line-height: 50px;border-bottom: 1px solid #dfbc6f;text-align: center;margin-bottom: 50px;-top: 50px;color: #646464;}
+.title img{position: relative;top: 5px;right: 15px;}
+
+.news{}
+.news001{width:1000px; margin:0 auto; padding:0px; display:table;margin-top:50px;}
+.newsPic{width: 400px;height: 300px;}
+.newsList{
+	width: 516px;height: 300px; overflow:hidden;display:block
+}
+.newsList ul li{
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #646464;
+	cursor: pointer;
+	position: relative;
+}
+.newsList ul li:hover{
+	color: #debc5f;
+}
+.newsList ul li:before{
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #dfbc6f;
+	left: -20px;
+	top: 6px;
+}
+.newsList ul li span:first-child{
+	float: left;
+	display: inline-block;
+	width: 340px;
+	margin-right: 20px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.introText{
+	width: 516px;
+	color: #646464;
+	font-size: 18px;
+}
+.center{
+	overflow: hidden;
+}
+.centeritem{
+	width: 320px;
+	float: left;
+	text-align: center;
+	margin-bottom: 60px;
+}
+.itemName{
+	margin-bottom: 30px;
+	font-size: 20px;
+	color: #646464;
+}
+.centeritem img{
+	margin-bottom: 20px;
+}
+.centeritem p{
+	text-align: left;
+	width: 225px;
+	margin: 0 auto;
+	font-size: 14px;
+	color: #646464;
+}
+.applyJoin,.entrySet{
+	text-align: center;
+	margin-bottom: 20px;
+}
+.applyJoin span,.entrySet span{
+	position: relative;
+	font-size: 14px;
+}
+.entrySet span:nth-child(1){
+	margin-right: 60px;
+}
+.applyJoin span:before,.entrySet span:before{
+	content: "";
+	background: url(../img/policy.png);
+	width: 24px;
+    height: 21px;
+    position: absolute;
+    left: -30px;
+    top: 1px;
+}
+.applyJoin span:before{
+	background: url(../img/apply.png);
+}
+.entrySet span:nth-child(2):before{
+	background: url(../img/apply.png);
+}
+.settledCompany{
+	height: 350px;
+}
+.company{
+	width: 750px;
+	margin: 0 auto;
+}
+.companyItem{
+	text-align: center;
+	width: 150px;
+	height: 105px;
+	float: left;
+	margin-bottom: 10px;
+}
+.companyItem div{
+	font-size: 14px;
+	color: #646464;
+}
+.flowChart{
+	text-align: center;
+}
+.flowChart img{
+	margin-top: 15px;
+}
+.applyJoin{
+	text-align: center;
+	margin-bottom: 20px;
+}
+.business{
+	height: 350px;
+}
+.top{
+	width: 100%;
+	height: 115px;
+	border-bottom: 1px solid #e4e4e4;
+	padding: 27px 0;
+}
+.topTab{
+	width: 800px;
+	margin: 0 auto;
+}
+.rightLine{
+	border-right: 1px solid #f4f4f4;
+}
+.tabItem{
+	text-align: center;
+}
+.tabItem .name{
+	font-size: 20px;
+	color: #333;
+}
+.tabItem .num{
+	font-size: 30px;
+	color: #cb995a;
+}
+.introInfo{
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+
+
+
+
+
+

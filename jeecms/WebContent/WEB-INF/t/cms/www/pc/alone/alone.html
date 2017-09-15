@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	 <title>${site.name}</title>
+    <meta http-equiv="keywords" content="${site.keywords!}"/>
+    <meta http-equiv="description" content="${site.description!}"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="/${res}/css/standard.css">
+</head>
+<body>
+	<header>
+		<div class="head">
+			<img src="/${res}/img/logo.png">
+			<ul>
+				<li><a class="color-dfbc6f" href="${site.url!}">首页</a></li>
+				[@cms_channel id='76']<li class="active">${tag_bean.name}[/@cms_channel]</li>
+				<li>[@cms_channel id='94']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='97']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='100']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='101']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+			</ul>
+			<div id="loginCsiDiv" style="float: right;"></div>
+		  	<script type="text/javascript">
+			$(function(){
+				[#if site.config.ssoEnable]
+				Cms.loginSSO('${base}');
+				[/#if]
+				Cms.loginCsi("${base}","loginCsiDiv",{"returnUrl":"${location}"});
+			});
+		   </script>
+		</div>
+	</header>
+	<section class="content">
+		<div class="detail">
+			<div class="title">
+				<img src="/${res}/img/leaf.png">
+				<span>${channel.title!channel.name}</span>
+			</div>
+			<div class="process">
+				${channel.txt!}
+			</div>
+		</div>
+	</section>
+	[#include "../include/footer.html"/]
+</body>
+
+</html>

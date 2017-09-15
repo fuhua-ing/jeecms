@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.core.entity">
+	<class name="CmsUserExt" table="jc_user_ext">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="user_id">
+			<generator class="foreign"><param name="property">user</param></generator>
+		</id>
+		<property name="realname" column="realname" type="string" not-null="false" length="100"/>
+		<property name="gender" column="gender" type="java.lang.Boolean" not-null="false"/>
+		<property name="birthday" column="birthday" type="timestamp" not-null="false" length="19"/>
+		<property name="intro" column="intro" type="string" not-null="false" length="255"/>
+		<property name="comefrom" column="comefrom" type="string" not-null="false" length="150"/>
+		<property name="qq" column="qq" type="string" not-null="false" length="100"/>
+		<property name="msn" column="msn" type="string" not-null="false" length="100"/>
+		<property name="phone" column="phone" type="string" not-null="false" length="50"/>
+		<property name="mobile" column="mobile" type="string" not-null="false" length="50"/>
+		<property name="userImg" column="user_img" type="string" not-null="false" length="255"/>
+		<property name="userSignature" column="user_signature" type="string" not-null="false" length="255"/>
+		<property name="education" column="education" type="integer" not-null="false" length="1"/>
+		<property name="graduate" column="graduate" type="string" not-null="false" length="255"/>
+		<property name="companyName" column="company_name" type="string" not-null="false" length="500"/>
+		<property name="companyAddressDetail" column="company_address_detail" type="string" not-null="false" length="500"/>
+		<property name="companyIntro" column="company_intro" type="string" not-null="false" length="500"/>
+		
+		<property name="companyAddressProvince" type="java.lang.String" column="company_address_province" length="40" />
+        <property name="provinceName" type="java.lang.String" column="province_name" length="40" />
+        <property name="companyAddressCity" type="java.lang.String" column="company_address_city" length="40" />
+        <property name="cityName" type="java.lang.String" column="city_name" length="40" />
+        <property name="companyType" type="java.lang.String" column="company_type" length="100" />
+        <property name="companyPosition" type="java.lang.String" column="company_position" length="255" />
+		<one-to-one name="user" class="CmsUser" constrained="true"/>
+	</class>
+</hibernate-mapping>

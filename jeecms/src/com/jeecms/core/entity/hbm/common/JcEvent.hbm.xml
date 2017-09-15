@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jeecms.core.entity.JcEvent" table="jc_event">
+        <id name="eventId" type="java.lang.Integer">
+            <column name="event_id" />
+            <generator class="identity" />
+        </id>
+        <property name="eventUuid" type="java.lang.String">
+            <column name="event_uuid" length="100">
+                <comment>事件唯一uuid</comment>
+            </column>
+        </property>
+        <property name="eventType" type="java.lang.String">
+            <column name="event_type" length="30">
+                <comment>要做啥</comment>
+            </column>
+        </property>
+        <property name="eventApplyTime" type="java.sql.Timestamp">
+            <column name="event_apply_time" length="19">
+                <comment>申请时间开始区域</comment>
+            </column>
+        </property>
+        <property name="eventEndTime" type="java.sql.Timestamp">
+            <column name="event_end_time" length="19">
+                <comment>申请时间结束区域</comment>
+            </column>
+        </property>
+        <property name="eventUserId" type="java.lang.Integer">
+            <column name="event_user_id" not-null="true">
+                <comment>userid</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

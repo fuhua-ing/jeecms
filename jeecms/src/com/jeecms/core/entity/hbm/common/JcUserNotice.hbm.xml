@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.core.entity">
+    <class name="JcUserNotice" table="jc_user_notice">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cmsUser" class="CmsUser" fetch="select">
+            <column name="user_id" />
+        </many-to-one>
+        <property name="result" type="java.lang.Byte" column="result"/>
+        <property name="title" type="string" column="title"/>
+        <property name="content" type="string">
+            <column name="content" length="65535">
+            </column>
+        </property>
+        <property name="readStatus" type="java.lang.Byte" column="read_status"/>
+        <property name="tag" type="java.lang.Byte" column="tag"/>
+        <property name="createTime" type="timestamp">
+            <column name="create_time" length="19">
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

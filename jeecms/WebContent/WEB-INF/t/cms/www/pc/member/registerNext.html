@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>新金融大厦</title>
+	<link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="/${res}/css/register1.css">
+	<script type="text/javascript" src="/${res}/js/jquery-1.8.3.min.js"></script>
+	<script src="/${res}/js/region.js" type="text/javascript"></script>
+	<script src="${resSys}/jquery.js" type="text/javascript"></script>
+	<script src="${resSys}/front.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$(function(){
+		loadData(companyAddressProvince,000000,companyAddressCity,000000);
+	});
+	</script>
+</head>
+<body>
+	<header>
+		<div class="head">
+			<img src="/${res}/img/logo.png">
+			<ul>
+				<li class="active">首页</li>
+				<li>[@cms_channel id='76']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='94']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='97']<a class="color-dfbc6f" href="#">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='100']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='101']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+			</ul>
+ 			<div id="loginCsiDiv" style="float: right;"></div>
+		  	<script type="text/javascript">
+			$(function(){
+				[#if site.config.ssoEnable]
+				Cms.loginSSO('${base}');
+				[/#if]
+				Cms.loginCsi("${base}","loginCsiDiv",{"returnUrl":"${location}"});
+			});
+		   </script>
+		</div>
+	</header>
+	<div class="lineSty"></div>
+	<section class="content">
+		<div class="register">
+			<div class="steps flex">
+				<div class="step flex_1 stepLine">
+					<img src="/${res}/img/a1.png">
+					<p class="active">基本信息</p>
+				</div>
+				<div class="step flex_1 stepLine">
+					<img src="/${res}/img/a2.png">
+					<p class="active">资料填写</p>
+				</div>
+				<div class="step flex_1">
+					<img src="/${res}/img/3.png">
+					<p>完成注册</p>
+				</div>
+			</div>
+			<div class="inputBox">
+				<span><em class="must">*</em>姓名：</span>
+				<input id="personName" type="text" name="" class="inputSty nameSty" placeholder="请输入您的姓名">
+				<select id="sex">
+					<option value="1">先生</option>
+					<option value="0">女士</option>
+				</select>
+			</div>
+			<div class="inputBox">
+				<span><em class="must">*</em>学历：</span>
+				<select id="graduate">
+					<option value=1>初中</option>
+					<option value=2>高中</option>
+					<option value=3>本科</option>
+					<option value=4>硕士</option>
+					<option value=5>博士</option>
+					<option value=6>其他</option>
+				</select>
+			</div>
+			<div class="inputBox">
+				<span><em class="must">*</em>固定电话：</span>
+				<input id="localPhone" type="text" name="" class="inputSty" value="${username}" readonly="readonly">
+			</div>
+			<div class="inputBox">
+				<span><em class="must">*</em>QQ：</span>
+				<input id="qq" type="text" name="" class="inputSty" placeholder="请输入您的QQ">
+			</div>
+			<div class="inputBox">
+				<span><em class="must">*</em>电子邮箱：</span>
+				<input id="email" type="text" name="" class="inputSty" placeholder="请输入您的电子邮箱">
+			</div>
+			<div class="inputBox">
+				<span><em class="must">*</em>公司名称：</span>
+				<input id="companyName" type="text" name="" class="inputSty" placeholder="请输入您的公司名称">
+			</div>
+			<div class="inputBox">
+				<span><em class="must">*</em>公司类别：</span>
+                <select id="companyCatagroy" name="companyCatagroy" class="inputBox left">
+                   <option value="">请选择</option>
+                   [#if investFiledList??]
+                   	[#list investFiledList as investFiled]
+                    	<option value="${investFiled.value!}">${investFiled.name!}</option>
+                   	[/#list]
+                   [/#if]
+                  </select>
+			</div>
+			<div class="inputBox">
+				<span>地址：</span>
+					<select id="companyAddressProvince" name="companyAddressProvince"  onchange="chgProvinces(companyAddressProvince,companyAddressCity)">
+						<option></option>
+					</select>
+					<select id="companyAddressCity" name="companyAddressCity">
+						<option></option>
+					</select>
+			</div>
+			<div class="inputBox">
+				<span></span>
+				<input id="adressDetail" type="text" name="" class="inputSty" placeholder="请输入您的详细地址">
+			</div>
+			<div class="inputBox">
+				<span><em class="must">*</em>职务：</span>
+				<input id="companyPosition" type="text" name="" class="inputSty" placeholder="请输入您的职务">
+			</div>
+			<form id="uploadImage"  enctype="multipart/form-data">
+			<div class="inputBox">
+				<span><em class="must">*</em>上传头像：</span>
+				<div class="inputSty upload">
+					<img class="uploadPic" src="/${res}/img/uploadPic.png">
+					<p>仅支持小于250k的png/jpg格式，推荐100*100分辨率</p>
+					<button class="btn uoloadBtn">上传头像</button>
+					<input id="userImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" name="" class="fileSty">
+				</div>
+			</div>
+			</form>
+			<div class="inputBox">
+				<span>公司简介：</span>
+				<textarea id="companyIntroduce" type="text" name="" class="inputSty" placeholder="请输入公司简介和企业投融案例"></textarea>	
+			</div>
+			<div class="inputBox">
+				<span>个人简介：</span>
+				<textarea id="personalDetail" type="text" name="" class="inputSty" placeholder="请输入您的个人简介"></textarea>
+			</div>
+			<div class="inputBox">
+				<span class="none"></span>
+				<div class="inputSty serviceBox">
+					<label class="checkBoxSty" for="all">
+						<input id="checkboxId" type="checkbox" name="all" id="all" v-model="checked">
+						<span></span>
+					</label>
+					<p class="service">我已阅读并同意<a href="">《新金融大厦用户服务协议》</a></p>
+				</div>
+			</div>
+			<div class="inputBox">
+				<span></span>
+				<button id="registerTrue" class="registerBtnSty inputSty">注册</button>
+			</div>
+			<div class="inputBox">
+				<span></span>
+				<div class="loginLink inputSty">已有账号，请<a href="">登录</a></div>
+			</div>
+			
+		</div>
+			<div class="cover-level">
+				<div id="alert-dialog">
+					<div class="alert-text"></div>
+					<div class="a-container"><a href="javascript:void(0)" class="close-dialog">关闭</a></div>
+				</div>
+			</div>
+	</section>
+	<footer>
+		<div class="foot">
+			<div class="floatLeft entrys">
+				<table>
+					<tr>
+						<td><a href="">首页</a></td>
+						<td><a href="">咨询中心</a></td>
+						<td><a href="">最新动态</a></td>
+						<td><a href="">会员中心</a></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a href="">沙龙活动</a></td>
+						<td><a href="">资源</a></td>
+						<td><a href="">申请入驻</a></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a href="">金融教育</a></td>
+						<td><a href="">项目</a></td>
+						<td><a href="">联系我们</a></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a href="">宣传活动</a></td>
+						<td><a href="">人才</a></td>
+						<td><a href="">意见反馈</a></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a href="">政策解读</a></td>
+						<td><a href="">资本</a></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div class="line floatLeft"></div>
+			<div class="floatRight qrCode">
+				<div class="floatRight mgl-50">
+					<img src="/${res}/img/service.png">
+					<div>服务号二维码</div>
+				</div>
+				<div class="floatRight">
+					<img src="/${res}/img/subscribe.png">
+					<div>订阅号二维码</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+<script type="text/javascript" src="/${res}/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/${res}/js/register.js"></script>
+<script type="text/javascript">
+	document.querySelector('.fileSty').onchange = function(e){
+		document.querySelector('.uploadPic').setAttribute('src',window.URL.createObjectURL(e.target.files[0]));
+	};
+</script>
+
+</html>

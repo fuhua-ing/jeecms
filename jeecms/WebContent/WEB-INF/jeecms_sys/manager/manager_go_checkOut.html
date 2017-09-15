@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+<style type="text/css">
+.button{
+	margin-left: 40px;
+	margin-top:  80px;
+}
+</style>
+</head>
+<body>
+<div class="page-positon ove">
+  <div class="position-div"><@s.m "global.position"/>: <@s.m "cmsSite.corp.manager"/> > <@s.m "global.check"/></div>
+</div>
+<div class="body-box">
+<div style="display: none"><span></span><input id="corpId" value="${jcCorp.corpId}" /></div>
+<div><span>企业名称:</span><input id="corpName" value="${jcCorp.corpName}" /></div>
+<div><span>法定代表人:</span><input value="${jcCorp.corpLegalPerson}" /></div>
+<div><span>联系电话:</span><input value="${jcCorp.corpLegalPersonTel}" /></div>
+<div><span>注册资金:</span><input value="${jcCorp.corpRegisteredFunds}" /></div>
+<div><span>实到资金:</span><input value="${jcCorp.corpTrueFunds}" /></div>
+<div><span>网站:</span><input value="${jcCorp.corpHomepage}" /></div>
+<div><span>微信:</span><input value="${jcCorp.corpWechat}" /></div>
+<div><span>业态归类:</span><input value="${jcCorp.corpManageScope}" /></div>
+<div><span>企业主经营业务范围:</span><input value="${jcCorp.corpMainBusiness}" /></div>
+<div><span>现阶段业务经营情况:</span><input value="${jcCorp.corpSituationBusiness}" /></div>
+<div><span>资质:</span><input value="${jcCorp.corpLicense}" /></div>
+<div><span>与中心合作内容:</span><input value="${jcCorp.corpPlanBusiness!}" /></div>
+
+<div><span id="checkPass" class="button">审核</span><span id="checkRefeusd" class="button">拒绝</span><span id="back" class="button">返回</span></div>
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+
+</html>
+<script type="text/javascript">
+$("#checkPass").click(function(){
+	var id = $("#corpId").val();
+	value={
+		id:id,
+		pass:true
+		};
+	alert(id); 
+		$.ajax({
+		url : 'manager_checkpass.do',
+		type : 'post',
+		data : value,
+		async : false, // 默认为true 异步
+		error : function() {
+			alert('error');
+		},
+		success : function(data) {
+			alert(data);
+			window.location.href="manager_membercheck_out.do";
+		}
+	});
+});
+$("#checkRefeusd").click(function(){
+	var id = $("#corpId").val();
+	value={
+		id:id,
+		pass:false
+		};
+	alert(id); 
+		$.ajax({
+		url : 'manager_checkpass.do',
+		type : 'post',
+		data : value,
+		async : false, // 默认为true 异步
+		error : function() {
+			alert('error');
+		},
+		success : function(data) {
+			alert(data);
+			window.location.href="manager_membercheck_out.do";
+		}
+	});
+});
+$("#back").click(function(){
+	window.location.href="manager_membercheck.do";
+});
+</script>

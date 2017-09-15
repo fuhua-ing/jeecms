@@ -1,0 +1,135 @@
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.clear{
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+    zoom: 1;
+}
+li{
+    list-style: none;
+}
+.trends{
+    width: 650px;
+    margin: 0px auto;
+    border-bottom: 1px solid #dfbc6f;
+    line-height: 60px;
+margin-bottom: 24px;
+}
+.trends span{
+    display: inline-block;
+    margin-left: 100px;
+    color: #666;
+    font-size: 20px;
+}
+.trends img{
+    width: 20px;
+    position: relative;
+    top: 5px;
+}
+.trendsSearch{
+    position: relative;
+    width: 650px;
+    margin: 0 auto 30px;
+}
+.trendsSearch input{
+    width: 650px;
+    height: 40px;
+    border-radius: 15px;
+    border: 1px solid #dcdcdc;
+    padding-left: 30px;
+    padding-right: 34px;
+    box-sizing: border-box;
+    outline: none;
+}
+.trendsSearch img{
+    position: absolute;
+    right: 34px;
+    top: 8px;
+    width: 25px;
+    border-left: 1px solid #dcdcdc;
+    padding-left: 20px;
+}
+.trendsContent{
+    width: 904px;
+    margin: 0px auto;
+height:765px;
+}
+.trendsContentleft{
+    width: 432px;
+    /*border: 1px solid #646464;*/
+    overflow: hidden;
+}
+.trendsBox{
+    width: 432px;
+    border: 1px solid #dcdcdc;
+    margin-bottom: 20px;
+    overflow: hidden;
+    float: left;
+}
+.trendsBox:nth-child(2n-1){
+    margin-right: 40px;
+}
+.trendsBoximg{
+    width: 120px;
+    height: 120px;
+    float: left;
+}
+.trendsBoximg img{
+    width: 120px;
+    height: 120px;
+}
+.trendsBoxtext{
+    width: 310px;
+    /*float: right;*/
+     padding: 12px 10px 0px;
+    box-sizing: border-box;
+    color: #646464;
+}
+.trendsBoxtext span{
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #999;
+}
+.trendsBoxtext a:nth-child(1)  span{
+    font-size: 16px;
+    color: #333;
+}
+
+.trendsContentright{
+    width: 432px;
+    /*border: 1px solid #646464;*/
+    overflow: hidden;
+}
+.trendsPage{
+    width: 100%;
+    text-align: center;
+    margin: 50px 0px;
+}
+.trendsPage span{
+    margin-left: 50px;
+    text-decoration: underline;
+}
+.trendsPage span:nth-child(1){
+    margin-left: 0px;
+}
+.trendsPage .active{
+    color: #dfbc6f;
+}
+.trendsBoxcolor{
+    border: none;
+}
+.trendsBoxcolor .trendsBoxtext span:nth-child(2){
+    border-bottom: 1px solid #dfbc6f;
+    padding-bottom: 15px;
+}
+.trendsDistance{
+    margin-top: 50px;
+}

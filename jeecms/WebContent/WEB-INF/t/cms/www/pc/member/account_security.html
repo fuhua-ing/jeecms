@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>账号安全</title>
+    <link rel="stylesheet" type="text/css" href="/${res}/css/common_pr.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/index.css">
+    <link rel="stylesheet" type="text/css" href="${resSys}/alert/alert.css">
+    <script src="${resSys}/validate/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="${resSys}/validate/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="${resSys}/alert/shCore.js'" type="text/javascript"></script>
+    <script src="${resSys}/alert/makeSy.js'" type="text/javascript"></script>
+    <script src="${resSys}/alert/alert.min.js" type="text/javascript"></script>
+    
+    <style type="text/css">
+        .classdiv{
+          width:410px; 
+          line-height: 35px;
+          font-size: 14px;
+          font-weight: normal;
+          font-family: "微软雅黑";
+          margin-bottom:10px;
+          float:left;
+        }
+        .classdiv span{
+          width:100px;
+          height:35px;
+          display:inline-block;
+          text-align:right;
+        }
+        .classdiv font{
+          margin-left:10px;
+        }
+		.mblack
+		{
+		  width:50px;
+		  padding-top: 4px;
+		  vertical-align: top;
+		  white-space: nowrap;
+		  float:left;
+		}
+		.error {
+		  background:url("${resSys}/validate/img/invalid.png") no-repeat 0px 4px;
+		  font-weight: bold;
+		  margin-left:10px;
+		  padding-left:16px;
+		  color: #EA5200;
+		}
+		.checked {
+		  background:url("${resSys}/validate/img/valid.png") no-repeat center center;
+		  width : 15px;
+		  height: 15px;
+		  float: left;
+		  display:inline-block;
+		  margin-top:10px;
+		  margin-left:10px;
+		}
+    </style>
+   <script type="text/javascript">
+        function alertF(){
+        	var M = {}
+        	if(M.dialog3){
+    			return M.dialog3.show();
+    		}
+    		M.dialog3 = jqueryAlert({
+    			'style'   : 'wap',
+    			'icon'    : '${resSys}/alert/icon/right.png',
+    			'title'   : '账号密码修改成功',
+    			'width'   : '250',
+    			'height'  : '80',
+    			'closeTime' : 2000,
+    			'modal'   : true,
+    			'buttons' :{
+    				'确定' : function(){
+    					M.dialog3.close();
+    					document.getElementById("formid").reset();
+    					window.location.reload();
+    				}
+    			}
+    		})
+        	
+        }
+        $(function() { 
+            $("#formid").validate({
+          	  rules : {
+  		          oldPassword : {
+  						required : true,
+  						remote : {
+  							url : "/personal/check_old_password.jspx",
+  							type : "post",
+  							dataType : "json",
+  							cache : false,
+  							async : false, 
+  							data : {
+  								oldPassword : function(){
+  									return $("#oldPassword").val();
+  								}
+  							},
+  							dataFilter : function (data , type){
+  								console.log(data);
+  								return data;
+  							}
+  						}
+  					
+  					},
+                   newPassword : {
+                  	 required : true
+                      },
+  				 newPassword_C : {
+  	                 required : true,
+  	                 equalTo : "#newPassword"
+  	                }
+          	  },
+          	  messages : {
+          		  oldPassword : {
+          			  required : "请输入原始密码",
+          			  remote : "请正确输入原始密码"
+          		  },
+          		  newPassword : {
+          			  required : "请输入修改密码"
+          		  },
+          		  newPassword_C : {
+          			  required : "请输入确认密码",
+          			  equalTo : "密码不一致"
+          		  }
+          	  },
+	          onfocusout: function(element){
+	               $(element).valid();
+	          },
+          	  errorPlacement: function(error, element) {
+                    error.appendTo(element.parent().parent().next().next());  
+                },
+                highlight: function(element, validClass) {
+                    $(element).parent().parent().next().removeClass("checked");
+                },
+                unhighlight:function(element, errorClass) {
+              	  $(element).parent().parent().next().next().removeClass("error");
+                    $(element).parent().parent().next().addClass("checked");
+                },
+          	  submitHandler: function(){
+          		  $.ajax({
+          			  url : "/personal/account_security.jspx",
+          			  type : "post",
+          			  data:{
+          				  oldPassword : $("#oldPassword").val(),
+          				  newPassword : $("#newPassword").val(),
+          			  },
+                        async : false, 
+                        success:function(data){  
+                      	 alertF();
+                        }  
+          		  });
+          	  }
+            });
+         })
+   </script>
+</head>
+<body>
+    [#include "../include/header.html"/]
+    <section class="body_bg">
+           <div class="u_content">
+                 <div class="user_left">
+                      <ul>
+                           <li><a href=""><span>基本信息</span></a></li>
+                           <li><a href=""><span>投资人认证</span></a></li>
+                           <li><a href=""><span>发布项目</span></a></li>
+                           <li><a href=""><span>发布转让</span></a></li>
+                           <li><a href=""><span>项目管理</span></a></li>
+                           <li><a href=""><span>消息通知</span></a></li>
+                           <li><a href="" class="user_left_hover"><span>账号安全</span></a></li>
+                      </ul>
+                 </div>
+                 <div class="user_right">
+                      <div class="renx"><span>账号安全</span></div>
+                      <!---------->
+                      <form id="formid">
+                            <div class="zhaogh">
+                                 <div class="classdiv"><span>旧密码</span><font><input id="oldPassword" name="oldPassword" type="text" class="zhinput" placeholder="请输入旧密码"></font></div><label class=""></label><div class="mblack"> </div>
+                                 <div class="classdiv"><span>新密码</span><font><input id="newPassword" name="newPassword" type="password" class="zhinput" placeholder="请输入新密码"></font></div><label class=""></label><div class="mblack"> </div>
+                                 <div class="classdiv"><span>确认密码</span><font><input id="newPassword_C" name="newPassword_C" type="password" class="zhinput" placeholder="请在次输入新密码"></font></div><label class=""></label><div class="mblack"> </div>
+                                 <h2><input type="submit" class="zhangbut" value="修改密码"></h2>
+                            </div>
+                            </form>
+                      <!---------->
+                   </div>
+           </div>
+    </section>
+    <footer>
+        <div class="foot">
+            <div class="floatLeft entrys">
+                <table>
+                    <tr>
+                        <td><a href="">首页</a></td>
+                        <td><a href="">活动中心</a></td>
+                        <td><a href="">资讯中心</a></td>
+                        <td><a href="">帮助中心</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a href="">沙龙活动</a></td>
+                        <td><a href="">最新资讯</a></td>
+                        <td><a href="">申请入驻</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a href="">金融教育</a></td>
+                        <td><a href="">政策解读</a></td>
+                        <td><a href="">联系我们</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a href="">项目路演</a></td>
+                        <td><a href=""></a></td>
+                        <td><a href="">意见反馈</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="line floatLeft"></div>
+            <div class="floatRight qrCode">
+                <div class="floatRight mgl-50">
+                    <img src="/${res}/img/service.png">
+                    <div>服务号二维码</div>
+                </div>
+                <div class="floatRight">
+                    <img src="/${res}/img/subscribe.png">
+                    <div>订阅号二维码</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

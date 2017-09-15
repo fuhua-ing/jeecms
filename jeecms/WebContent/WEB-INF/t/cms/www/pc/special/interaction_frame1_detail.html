@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>项目详情</title>
+    <link rel="stylesheet" type="text/css" href="/${res}/css/common_grzx.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/newsCenter.css">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+</head>
+<body>
+    <#include "../include/header.html"/>
+    <section>
+           <div class="xx_content">
+                <div class="xx_tit"><a href="javascript:history.back();">< 返回</a></div>   
+                 <div class="xx_left">
+                   <div class="xx_left01">
+                       <div class="xx_center">
+                       <h1>${(item.companyName)!}<span><img src="/${res}/img/timecon.png">
+                       <#if (item.createTime)??>${item.createTime?string('yyyy-MM-dd HH:mm:ss')}</#if></span></h1>
+                       <div class="xx_img"><img src="/${res}/img/rongz.png"></div>
+                       <h2>
+                          <span><i>项目位置：</i>${(item.provinceName)!}${(item.cityName)!}</span>
+                          <span><i>所属阶段：</i>
+                          <#if (item.stage)??>
+                            <#if investStageList??>
+                              <#list investStageList as investStage>
+                                <#if investStage.value==item.stage>
+                                ${investStage.name}
+                                </#if>
+                              </#list>
+                            <#else>
+                              ${item.stage!}
+                            </#if>
+                          </#if>
+                          </span>
+                          <span><i>所属行业：</i>
+                          <#if (item.industry)??>
+                            <#if investFiledList??>
+                              <#list investFiledList as investFiled>
+                                <#if investFiled.value==item.industry>
+                                ${investFiled.name}
+                                </#if>
+                              </#list>
+                            <#else>
+                              ${item.industry!}
+                            </#if>
+                          </#if>
+                          </span>
+                          <#if (item.financingAmount)?? && item.financingAmount?length gt 0>
+                          <span><i>融资金额：</i>${item.financingAmount}万</span>
+                          <#else>
+                          <span><i>融资金额：</i></span>
+                          </#if>
+                          <#if (item.accountScaleMin)?? && item.accountScaleMin?length gt 0 && (item.accountPositionMax)?? && item.accountPositionMax?length gt 0>
+                          <span><i>资金额方占股比例：</i>${(item.accountScaleMin)!'0'}%~${(item.accountPositionMax)!'0'}%</span>
+                          <#else>
+                          <span><i>资金额方占股比例：</i>面议</span>
+                          </#if>
+                          <span><i>资金用途：</i>${(item.accountPurpose)!}</div>
+                       </div>
+                       <div class="xx_left01">
+                             <div class="xx_center">     
+                                  <div class="xx_name">项目介绍</div>
+                                  <div class="xx_neirong">
+                                        <h3>项目情况介绍（包括公司和项目简介、市场容量、市场地位等）</h3>
+                                        <p>${(item.projectSituation)!}</p>
+                                        <h3>项目优势（核心竞争力）</h3>
+                                        <p>${(item.projectAdvantage)!}</p>
+                                        <h3>管理团队情况</h3>
+                                        <p>${(item.teamStand)!}</p>
+                                        <!--<h3>未来规划（项目短期和长期的定位）</h3>-->
+                                        <h3>备注</h3>
+                                        <p>${(item.notes)!}</p>
+                                  </div>
+                             </div>
+                       </div>
+                 </div>
+                 <!---->
+                 <div class="xx_right">
+                      <#if hasFollow?? && hasFollow ==1>
+                      <a href="/interactionFrame/follow.jspx?id=${(item.id)!}&tag=1&follow=2" class="xx_but01">不感兴趣</a>
+                      <#else>
+                      <a href="/interactionFrame/follow.jspx?id=${(item.id)!}&tag=1&follow=1" class="xx_but">感兴趣</a>
+                      </#if>
+                      <div class="xx_rcent">
+                           <div class="xx_ric">
+                                <div class="photo">
+                                <#if (userInfo.userImg)??>
+                                <img src="${(user.userImg)!}">
+                                <#else>
+                                <img src="/${res}/img/uploadPic.png">
+                                </#if>
+                                   ${(userInfo.realname)!}
+                                </div> 
+                                <h2>公司：${(userInfo.companyName)!}</h2>
+                                <h2>地区：${(userInfo.provinceName)!}${(userInfo.cityName)!}</h2>
+                                <h2>所属行业：
+                                <#if (userInfo.industry)??>
+                                  <#if investFiledList??>
+                                    <#list investFiledList as investFiled>
+                                      <#if investFiled.value==userInfo.industry>
+                                      ${investFiled.name}
+                                      </#if>
+                                    </#list>
+                                  <#else>
+                                    ${userInfo.industry!}
+                                  </#if>
+                                </#if></h2>
+                                <h2>联系方式：<i class="x_color">${(userInfo.mobile)!}</i></h2>
+                           </div>
+                      </div>
+                 </div>
+                 <!---->
+           </div>
+    </section>
+    <#include "../include/footer.html"/>
+</body>
+</html>

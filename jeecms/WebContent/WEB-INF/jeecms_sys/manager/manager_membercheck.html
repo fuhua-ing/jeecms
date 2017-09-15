@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+<style>
+.model{
+	float:left;
+}
+.model input{
+	border:1px solid #b5b5b5;
+	width:150px;
+	border-radius:4px;
+	margin-left:10px;
+	margin-right:10px;
+}
+.model select{
+	margin-left:10px;
+	margin-right:10px;
+}
+.modelTop{
+	position: relative;
+    top: -6px;
+}
+.modelBut{
+	width: 80px;
+	height: 30px;
+	color: white;
+	background-color: blue;
+}
+</style>
+</head>
+<body>
+<div class="page-positon ove">
+  <div class="position-div"><@s.m "global.position"/>: <@s.m "cmsSite.corp.manager"/> > <@s.m "global.check"/></div>
+</div>
+<div class="body-box">
+<#assign domainExist><@s.m "cmsSite.error.domainExist"/></#assign>
+<#assign accessPathExist><@s.m "cmsSite.error.accessPathExist"/></#assign>
+<form action="manager_membercheck_search.do" method="post">
+<div>
+	<div class="model">用户名:<input name="applyUsername" /></div>
+	<div class="model">企业名:<input name="corpName" /></div>
+	<div class="model modelTop">状态:
+		<select name="audit">
+		<option value=0>未审核</option>
+		<option value=1>审核通过</option>
+		<option value=2>审核失败</option>
+		</select>
+	</div>
+<div class="model">申请时间:<input name="timeBegin" />至<input name="timeEnd" /></div>
+<input type="submit" id="search" class="model modelTop modelBut query"></input>
+</div>
+</form>
+<@p.table value=pagination;jcCorp,i,has_next><#rt/>
+	<@p.column title="ID" align="center">${jcCorp.corpId}</@p.column><#t/>
+	<@p.column code="jcCorp.username" align="center">${jcCorp.corpApplyUsername!}</@p.column><#t/>
+	<@p.column code="jcCorp.companyName" align="center">${jcCorp.corpName!}</@p.column><#t/>
+	<@p.column code="jcCorp.applyTime" align="center">${jcCorp.corpApplyTime!}</@p.column><#t/>
+	<@p.column code="jcCorp.status" align="center"><#if jcCorp.corpAudit==0><span style="color:blue"><@s.m "jcCorp.unCheck"/></span><#elseif jcCorp.corpAudit==1><span style="color:green"><@s.m "jcCorp.checksuccess"/></span><#else><span style="color:red"><@s.m "jcCorp.checkunsuccess"/></span></#if></@p.column><#t/>
+	<@p.column code="global.operate" align="center">
+	<#if jcCorp.corpAudit==0>
+	<a href="manager_go_check.do?ids=${jcCorp.corpId}" class="pn-opt" ><@s.m "global.check"/></a>
+	<#else>
+	<a href="manager_go_view.do?ids=${jcCorp.corpId}" class="pn-opt" ><@s.m "global.view"/></a>
+	</#if>
+	
+	</@p.column><#t/>
+</@p.table>
+
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+</html>

@@ -1,0 +1,28 @@
+.content{
+	padding: 46px 25px 0;
+}
+@media screen and (max-height: 567px){
+	.content{
+		margin-bottom: 360px;
+	}
+}
+@media screen and (max-width: 359px){
+	.content{
+		padding: 46px 5px 0;
+	}
+}
+.modal img{
+	display: inline-block;
+	width: 45px;
+	height: 45px;
+	margin: 10px 0 3px 0;
+}
+.modal{
+	width: 150px;
+	height: 90px;
+	border-radius: 3px;
+	background: #d9b765;
+	margin-bottom: 14px;
+	text-align: center;
+	font-size: 14px;
+}

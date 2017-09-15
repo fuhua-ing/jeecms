@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div class="page-positon ove">
+  <div class="position-div"><@s.m "global.position"/>: <@s.m "cmsMessage.investor"/> > <@s.m "global.browse"/></div>
+</div>
+<div class="box-positon ck">
+	<form class="ropt">
+		<input type="button" value="<@s.m "global.backToList"/>" onclick="history.back();" class="return-button"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+<@p.form id="jvForm" labelWidth="12" class="formDefStyle">
+<@p.td width="50" colspan="1" label="cmsUser.realname" >${item.realName!}</@p.td>
+<@p.td width="50" colspan="1" label="investor.identity">
+<#if item.identity==1><@s.m "investor.identity1"/>
+<#elseif item.identity==2><@s.m "investor.identity2"/>
+<#else>${item.identity!}
+</#if>
+</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="investor.companyPost" >${item.companyPost!}</@p.td>
+<@p.td width="50" colspan="1" label="investor.companyAddressDetail" >${item.provinceName!}${item.cityName!}${item.companyAddressDetail!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="investor.idcardNumber">${item.idcardNumber!}</@p.td>
+<@p.td width="50" colspan="1" label="investor.wechatNumber">${item.wechatNumber!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="1" label="investor.invest" >${item.investMin!"0"}万元~${item.investMax!"0"}万元</@p.td>
+<@p.td width="50" colspan="1" label="investor.holdStockRatio" >${item.holdStockRatioMin!"0"}%~${item.holdStockRatioMax!"0"}%</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="investor.investStage" >
+<#if (item.investStage)??>
+	<#if investStageList??>
+		<#assign stageList=item.investStage?split(",")/>
+		<#list stageList as stage>
+			<#list investStageList as investStage>
+				<#if investStage.value==stage>
+				${investStage.name}
+				</#if>
+			</#list>
+			<#if stageList?size != (stage_index+1)>
+			、
+			</#if>
+		</#list>
+	<#else>
+		${(item.investStage)!}
+	</#if>
+</#if>
+</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="investor.intentionIndustry" >
+	<#if (item.intentionIndustry)??>
+		<#if investFiledList??>
+			<#assign intentionIndustryList=item.intentionIndustry?split(",")/>
+			<#list intentionIndustryList as intentionIndustry>
+				<#list investFiledList as investFiled>
+					<#if investFiled.value==intentionIndustry>
+					${investFiled.name}
+					</#if>
+				</#list>
+				<#if intentionIndustryList?size != (intentionIndustry_index+1)>
+				、
+				</#if>
+			</#list>
+		<#else>
+			${(item.intentionIndustry)!}
+		</#if>
+	</#if>
+</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="investor.comment" >${item.comment!}</@p.td>
+<@p.tr/>
+<@p.td width="50" colspan="2" label="investor.reason" >${item.reason!}</@p.td>
+<@p.tr/>
+</@p.form>
+</div>
+</body>
+</html>

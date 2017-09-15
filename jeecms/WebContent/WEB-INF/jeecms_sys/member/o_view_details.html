@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+
+</head>
+<style>
+.model{
+    margin-bottom:15px;
+}
+.model span{
+	font-size: 14px;
+    display: inline-block;
+    width: 150px;
+}
+.model input {
+    border-radius: 0;
+    color: #858585;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    padding: 2px 15px;
+    line-height: 1.2;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition-duration: .1s;
+    transition-duration: .1s;
+    height: 22px;
+}
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+.model-all{
+    clear: both;
+    width: 70%;
+    margin: 0px auto;
+}
+</style>
+<body>
+<div class="body-box">
+
+
+<span style="font-size: 18px;">基本信息</span>
+<div class='model-all'>
+<div class='model fl'><span>姓名:</span><input readonly="readonly"  value="${cmsUserExt.realname!''}" /></div>
+<div class='model fr'><span>手机号码:</span><input readonly="readonly" value="${cmsUserExt.phone!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>性别:</span><input readonly="readonly" value="${sex!''}" /></div>
+<div class='model fr'><span>学历:</span><input readonly="readonly" value="${educate!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>毕业大学:</span><input readonly="readonly" value="${cmsUserExt.graduate!''}" /></div>
+<div class='model fr'><span>固定电话:</span><input readonly="readonly" value="${cmsUserExt.mobile!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>微信号:</span><input readonly="readonly" value="${cmsUserExt.msn!''}" /></div>
+<div class='model fr'><span>QQ:</span><input readonly="readonly" value="${cmsUserExt.qq!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>电子邮箱:</span><input readonly="readonly" value="${cmsUser.email!''}" /></div>
+<div class='model fr'><span>公司名称:</span><input readonly="readonly" value="${cmsUserExt.companyName!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>公司类型:</span><input readonly="readonly" value="${comanyType!''}" /></div>
+<div class='model fr'><span>职务:</span><input readonly="readonly" value="${companyPosition!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>单位简介:</span><input readonly="readonly" value="${companyIntro!''}" /></div>
+<div class='model fr'><span>个人简介:</span><input readonly="readonly" value="${intro!''}" /></div></div>
+
+
+
+
+
+
+
+
+
+<div class='model'><span style="font-size: 18px;">投资人</span></div>
+<#if investors??>
+<div class='model-all'>
+<div class='model fl'><span>真实姓名:</span><input readonly="readonly" value="${investors.realName!''}" /></div>
+<div class='model fr'><span>投资人身份:</span><input readonly="readonly" value="${invest!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>所在公司:</span><input readonly="readonly" value="${cmsUserExt.companyName!''}" /></div>
+<div class='model fr'><span>公司地址:</span><input readonly="readonly" value="${investors.corpName!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>身份证号:</span><input readonly="readonly" value="${investors.idcardNumber!''}" /></div>
+<div class='model fr'><span>微信号:</span><input readonly="readonly" value="${investors.wechatNumber!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>投资阶段:</span><input readonly="readonly" value="${investors.investStage!''}" /></div>
+<div class='model fr'><span>意向投资行业:</span><input readonly="readonly" value="${investors.intentionIndustry!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>单个项目投资额度:</span><input readonly="readonly" value="${investMoney!''}" /></div>
+<div class='model fr'><span>单个项目参股比例:</span><input readonly="readonly" value="${investStock!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>成功投资案例:</span><textarea>${investors.successCase}</textarea></div></div>
+<#else><h6>暂时没有申请</h6>
+</#if>
+
+<div class='model'><span style="font-size: 18px;">企业入住信息</span></div>
+
+<#if jcCorpInner??>
+<div class='model-all'>
+<div style="display: none"><span></span><input readonly="readonly" id="corpId" value="${jcCorpInner.corpId!''}" /></div>
+<div class='model fl'><span>企业名称:</span><input readonly="readonly" id="corpName" value="${jcCorpInner.corpName!''}" /></div>
+<div class='model fr'><span>法定代表人:</span><input readonly="readonly" value="${jcCorpInner.corpLegalPerson!''}" /></div>
+<div class='model'><span>联系电话:</span><input readonly="readonly" value="${jcCorpInner.corpLegalPersonTel!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>经营范围:</span><input readonly="readonly" value="${jcCorpInner.corpManageScope!''}" /></div>
+<div class='model fr'><span>企业主经营业务范围:</span><input readonly="readonly" value="${jcCorpInner.corpMainBusiness!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>现阶段业务经营情况:</span><input readonly="readonly" value="${jcCorpInner.corpSituationBusiness!''}" /></div>
+<div class='model fr'><span>业务开展计划:</span><input readonly="readonly" value="${jcCorpInner.corpPlanBusiness!''}" /></div></div>
+<#else><h6>暂时没有申请</h6>
+</#if>
+
+<div class='model'><span style="font-size: 18px;">外部合作机构信息</span></div>
+<#if jcCorpout??>
+<div class='model-all'>
+<div class='model fl'><span>企业名称:</span><input readonly="readonly" id="corpName" value="${jcCorpout.corpName!''}" /></div>
+<div class='model fr'><span>法定代表人:</span><input readonly="readonly" value="${jcCorpout.corpLegalPerson!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>联系电话:</span><input readonly="readonly" value="${jcCorpout.corpLegalPersonTel!''}" /></div>
+<div class='model fr'><span>业态归类:</span><input readonly="readonly" value="${jcCorpout.corpManageScope!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>企业主经营业务范围:</span><input readonly="readonly" value="${jcCorpout.corpMainBusiness!''}" /></div>
+<div class='model fr'><span>现阶段业务经营情况:</span><input readonly="readonly" value="${jcCorpout.corpSituationBusiness!''}" /></div></div>
+<div class='model-all'>
+<div class='model fl'><span>与中心合作内容:</span><input readonly="readonly" value="${jcCorpout.corpPlanBusiness!''}" /></div></div>
+<#else><h6>暂时没有申请</h6>
+</#if>
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+</html>

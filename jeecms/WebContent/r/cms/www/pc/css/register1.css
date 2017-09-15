@@ -1,0 +1,267 @@
+.register{
+	width: 900px;
+	border-radius: 10px;
+	box-shadow: 0 0 20px #eee;
+	margin: 80px 0 24px 0;
+	padding: 74px;
+}
+.steps{
+	margin-bottom: 45px;
+}
+.step{
+	text-align: center
+}
+.step2{
+	width: 100px;
+	text-align: center;
+}
+.step3{
+	width: 100px;
+	text-align: center
+}
+.steps p{
+	color: #999;
+	font-size: 15px;
+}
+.stepLine{
+	position: relative;
+}
+.stepLine:before{
+	position: absolute;
+	content: "";
+	width: 200px;
+	height: 4px;
+	background-color: #ccc;
+	left: 150px;
+	top: 18px;
+}
+.steps p.active{
+	color: #dfbc6f;
+}
+.inputBox{
+	margin-bottom: 15px;
+	overflow: hidden;
+}
+.must{
+	color: #ff0000;
+	font-size: 18px;
+	position: relative;
+    top: 4px;
+    right: 10px;
+}
+.inputBox span{
+	display: inline-block;
+	width: 220px;
+	height: 42px;
+	text-align: right;
+	font-size: 15px;
+	color: #666;
+	float: left;
+	line-height: 36px;
+}
+.inputBox img{
+	display: inline-block;
+	width: 70px;
+	height: 32px;
+	float: left;
+	margin-top: 5px;
+}
+.inputSty{
+	width: 282px;
+	height: 42px;
+	border: 1px solid #dadada;
+	border-radius: 4px;
+	padding-left: 10px;
+	outline: none;
+	font-size: 15px;
+	float: left;
+}
+.codeSty{
+	width: 162px;
+	margin-right: 20px;
+}
+.getCode{
+	width: 110px;
+	background-color: #329eea;
+	height: 42px;
+	font-size: 15px;
+	display: inline-block;
+    text-align: center;
+    line-height: 42px;
+}
+/*提示框默认样式...*/
+.cover-level{
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:rgba(0,0,0,.2);
+}
+#alert-dialog{
+	width:400px;
+	height:100px;
+	border:1px solid #f2f2f2;
+	position:absolute;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-50px;
+	margin-left: -200px;
+	background-color:#f2f2f2;
+}
+.alert-text{
+	width:400px;
+	height:58px;
+	line-height:58px;
+	border-bottom:1px solid #ddd;
+	color:#989A9C;
+	padding-left:30px;
+}
+.a-container{
+	display:flex;
+	justify-content:flex-end;
+	height:39px;
+	line-height:39px;
+}
+.close-dialog{
+	font-size:14px;
+	margin-right:20px;
+	color:#329eea;
+}
+.getCode:hover{
+	background-color: #49a7eb;
+}
+.registerBtnSty{
+	height: 44px;
+	border-radius: 4px;
+	border: none;
+	outline: none;
+	color: #fff;
+	background-color: #dfbc6f;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 10px;
+}
+.loginBtn:hover{
+	background-color: #debe7a;
+}
+.loginLink{
+	text-align: center;
+	border: none;
+	line-height: 42px;
+	font-size: 16px;
+    color: #666;
+}
+.loginLink a{
+	color: #333;
+	text-decoration: underline;
+}
+
+.nameSty{
+	width: 162px;
+	margin-right: 10px;
+}
+.inputBox select{
+	width: 120px;
+	height: 42px;
+	border-radius: 4px;
+	border: 1px solid #dadada;
+	outline: none;
+	padding-left: 10px;
+}
+.inputBox textarea{
+	width: 316px;
+	height: 124px;
+	resize: none;
+	padding-top: 10px;
+}
+.fileSty{
+	position: absolute;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+}
+.upload{
+	height: auto;
+	border: none;
+	width: 316px;
+	position: relative;
+}
+.inputSty img{
+	display: block;
+	width: 100px;
+	height: 100px;
+	float: none;
+}
+.inputSty p{
+	font-size: 12px;
+	color: #999;
+	margin: 10px 0 8px 0;
+}
+.uoloadBtn{
+	background-color: #fff;
+	color: #dfbc6f;
+	border: 1px solid #dfbc6f;
+}
+.serviceBox{
+	border: none;
+	height: 30px;
+	padding-left: 20px;
+}
+.service{
+	font-size: 12px;
+	color: #333;
+}
+.service a{
+	color: #329eea;
+}
+.service a:hover{
+	color: #60b1eb;
+}
+.inputBox span.none{
+	height: 1px;
+}
+
+.checkBoxSty{
+	position: relative;
+}
+.checkBoxSty input{
+	display: none;
+}
+.checkBoxSty span{
+	display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url(../img/noselect.png) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 11px;
+    right: 5px;
+}
+.checkBoxSty input:checked + span{
+	background: url(../img/select.png) no-repeat;
+}
+
+.gou{
+	margin: 60px auto 34px;
+	width: 87px;
+}
+.complete{
+	font-size: 24px;
+	color: #666;
+	text-align: center;
+}
+.link{
+	text-align: center;
+	font-size: 16px;
+	margin-top: 15px;
+}
+.link a{
+	color: #dfbc6f;
+	text-decoration: underline;
+}

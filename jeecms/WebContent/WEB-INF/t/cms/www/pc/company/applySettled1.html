@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${site.name}</title>
+<meta http-equiv="keywords" content="${site.keywords!}"/>
+<meta http-equiv="description" content="${site.description!}"/>
+<link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+<link rel="stylesheet" type="text/css" href="/${res}/css/applyMec.css">
+</head>
+<body>
+	[#include "../include/header.html"/]
+	<section class="content q1" >
+		<div class="cover-level">
+			<div id="alert-dialog">
+				<div class="alert-text"></div>
+				<div class="a-container"><a href="javascript:void(0)" class="close-dialog">关闭</a></div>
+			</div>
+		</div>
+		<p class="titleName">申请企业入驻</p>
+		<div class="inputBox">
+			<span class="titleSty">基本信息：</span>
+		</div>
+		<div class="inputBox">
+			<span>企业名称：</span> <input id="corpName" type="text" name="" class="inputSty com"
+				placeholder="请输入您的企业名称">
+		</div>
+		<div class="inputBox">
+			<span>法定代表人：</span> <input id="corpLegalPerson" type="text" name="" class="inputSty"
+				placeholder="请输入法定代表人姓名">
+		</div>
+		<div class="inputBox">
+			<span>联系电话：</span> <input id="corpLegalPersonTel" type="text" name="" class="inputSty"
+				placeholder="请输入联系人手机号">
+		</div>
+		<div class="inputBox">
+			<span>注册资金：</span> <input id="corpRegisteredFunds" type="text" name="" class="inputSty "
+				placeholder="请输入注册资金金额">
+		</div>
+		<div class="inputBox">
+			<span>实到资金：</span> <input id="corpTrueFunds" type="text" name="" class="inputSty"
+				placeholder="请输入实到资金金额">
+		</div>
+		<div class="inputBox">
+			<span>经营范围：</span> <input id="corpManageScope" type="text" name="" class="inputSty"
+				placeholder="请输入经营范围">
+		</div>
+
+		<div class="inputBox">
+			<span>电话：</span> <input id="corpFixedTel" type="text" name="" class="inputSty"
+				placeholder="请输入企业固定电话">
+		</div>
+		<div class="inputBox">
+			<span>传真：</span> <input id="corpFax" type="text" name="" class="inputSty"
+				placeholder="请输入企业传真">
+		</div>
+		<div class="inputBox">
+			<span>网站：</span> <input id="corpHomepage" type="text" name="" class="inputSty"
+				placeholder="请输入企业网站">
+		</div>
+		<div class="inputBox">
+			<span>微信：</span> <input id="corpWechat" type="text" name="" class="inputSty"
+				placeholder="请输入联系人微信">
+		</div>
+		<div class="inputBox">
+			<span class="titleSty">经营历史：</span>
+		</div>
+		<div class="inputBox">
+			<span>企业主营业务范围：</span>
+			<textarea id="corpMainBusiness" type="text" name="" class="inputSty" placeholder=""></textarea>
+		</div>
+		<div class="inputBox">
+			<span>现阶段业务经营情况：</span>
+			<textarea id="corpSituationBusiness" type="text" name="" class="inputSty" placeholder=""></textarea>
+		</div>
+		<div class="inputBox">
+			<span>业务开展计划：</span>
+			<textarea id="corpPlanBusiness" type="text" name="" class="inputSty"
+				placeholder="注：尽量以数据为主"></textarea>
+		</div>
+		<button class="btn subSty nextStep">下一步</button>
+	</section>
+
+	<section class="content q2" style="display: none">
+		<p class="titleName">申请企业入驻</p>
+		<p class="sty">股东、实际控制人及管理人员情况：</p>
+		<div class="tableBox">
+			<table id="table">
+				<tr>
+					<td>股东姓名</td>
+					<td>
+						<p>目前实缴注册资本金额</p>
+						<p>（万元）</p></td>
+					<td>比例</td>
+					<td>
+						<p>出资方式</p>
+						<p>（货币/实物/无形资产）</p></td>
+				</tr>
+				<tr>
+					<td><input id="input1_1" class="inputSty inSty" type="text"
+						name="">
+					</td>
+					<td><input id="input1_2" class="inputSty inSty" type="text"
+						name="">
+					</td>
+					<td><input id="input1_3" class="inputSty inSty" type="text"
+						name="">
+					</td>
+					<td><input id="input1_4" class="inputSty inSty" type="text"
+						name="">
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="addBox">
+			<button id="addRow" class="btn addBtn" style="cursor: pointer;">添加</button>
+		</div>
+		<div class="inputBox">
+			<span>董事长姓名：</span> <input id="corpChairman" type="text" name="" class="inputSty com"
+				placeholder="请输入董事长姓名">
+		</div>
+		<div class="inputBox">
+			<span>董事长联系方式：</span> <input id="corpChairmanTel" type="text" name="" class="inputSty"
+				placeholder="请输入董事长联系方式">
+		</div>
+		<div class="inputBox">
+			<span>总经理姓名：</span> <input id="corpGeneralManager" type="text" name="" class="inputSty"
+				placeholder="请输入总经理姓名">
+		</div>
+		<div class="inputBox">
+			<span>总经理联系方式：</span> <input id="corpGeneralManagerTel" type="text" name="" class="inputSty "
+				placeholder="请输入总经理联系方式">
+		</div>
+		<div class="inputBox">
+			<span>人员架构：</span>
+			<textarea id="corpOrganizationStructure" type="text" name="" class="inputSty" placeholder=""></textarea>
+		</div>
+		<div class="inputBox">
+			<span>管理结构：</span>
+			<textarea id="corpManagementStructure" type="text" name="" class="inputSty" placeholder=""></textarea>
+		</div>
+		<form id="uploadImage"  enctype="multipart/form-data" method="post">
+		<div class="inputBox">
+			<span>上传营业执照：</span>
+			<div class="upBox">
+				<div id="addPic" class="imgBox add">
+					<img id="pic1" class="uploadPic" src="/${res}/img/addIcon.png"> <input
+						type="file" accept="image/png, image/jpeg, image/gif, image/jpg"
+						name="" class="fileSty">
+				</div>
+			</div>
+		</div>
+		</form>
+		<div class="btnBox">
+			<button class="btn subSty btnSty frontStep">上一步</button>
+			<button id="submitApplyCorp" class="btn subSty">提交</button>
+		</div>
+	</section>
+	[#include "../include/footer.html"/]
+</body>
+<script type="text/javascript" src="/${res}/js/jquery-1.8.3.min.js"></script>
+<script>
+	$("#addRow").click(function() {
+						var rows = getCurrentRows();
+						$("#table")
+								.append("<tr><td><input id='input"+rows+"_1' class='inputSty inSty' type='text' name=''></td><td><input id='input"+rows+"_2' class='inputSty inSty' type='text' name=''></td><td><input id='input"+rows+"_3' class='inputSty inSty' type='text' name=''></td><td><input id='input"+rows+"_4' class='inputSty inSty' type='text' name=''></td></tr>");
+					});
+
+	function getCurrentRows() {
+		return $("#table tr").length;
+	}
+</script>
+<script type="text/javascript">
+		document.querySelector('.upBox').addEventListener('change',function(e){
+			if(e.target.className == 'fileSty'){
+				var fileEle = e.target;
+				if(fileEle.files.length > 0){
+					// img
+					fileEle.previousElementSibling.setAttribute('src',window.URL.createObjectURL(e.target.files[0]));
+					fileEle.parentNode.classList.remove('add');
+					// 增加添加按钮
+					if(!document.querySelector('.add')){
+						var div = document.createElement('div');
+						div.setAttribute('class','imgBox add');
+						div.innerHTML = '<img class="uploadPic" src="/${res}/img/addIcon.png"><input type="file" accept="image/png, image/jpeg, image/gif, image/jpg" name="" class="fileSty">';
+						this.append(div);
+					}
+				}
+			}
+		});
+</script>
+
+
+<script type="text/javascript">
+function getFileName(o){
+    var pos=o.lastIndexOf("\\");
+    return o.substring(pos+1);  
+}
+
+$('.nextStep').on('click',function(){
+	var corpName = $("#corpName").val();
+	var corpLegalPerson = $("#corpLegalPerson").val();
+	var corpLegalPersonTel = $("#corpLegalPersonTel").val();
+	var corpRegisteredFunds = $("#corpRegisteredFunds").val();
+	var corpTrueFunds = $("#corpTrueFunds").val();
+	var corpManageScope = $("#corpManageScope").val();
+	var corpFixedTel = $("#corpFixedTel").val();
+	var corpFax = $("#corpFax").val();
+	var corpHomepage = $("#corpHomepage").val();
+	var corpWechat = $("#corpWechat").val();
+	if(corpName==null||corpName==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业名称不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpLegalPerson==null||corpLegalPerson==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业法人不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpLegalPersonTel==null||corpLegalPersonTel==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业法人联系电话不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpRegisteredFunds==null||corpRegisteredFunds==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业注册资金不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpTrueFunds==null||corpTrueFunds==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业实到资金不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpManageScope==null||corpManageScope==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业经营范围不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpFixedTel==null||corpFixedTel==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业电话不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpWechat==null||corpWechat==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业微信或联系人微信不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	$('.q1').hide();
+	$('.q2').show();
+});
+
+$('.frontStep').on('click',function(){
+	$('.q2').hide();
+	$('.q1').show();
+});
+
+$("#submitApplyCorp").click(function(){
+	var corpName = $("#corpName").val();
+	var corpLegalPerson = $("#corpLegalPerson").val();
+	var corpLegalPersonTel = $("#corpLegalPersonTel").val();
+	var corpRegisteredFunds = $("#corpRegisteredFunds").val();
+	var corpTrueFunds = $("#corpTrueFunds").val();
+	var corpManageScope = $("#corpManageScope").val();
+	var corpFixedTel = $("#corpFixedTel").val();
+	var corpFax = $("#corpFax").val();
+	var corpHomepage = $("#corpHomepage").val();
+	var corpWechat = $("#corpWechat").val();
+	var corpMainBusiness = $("#corpMainBusiness").val();
+	var corpSituationBusiness = $("#corpSituationBusiness").val();
+	var corpPlanBusiness = $("#corpPlanBusiness").val();
+	var corpChairman = $("#corpChairman").val();
+	var corpChairmanTel = $("#corpChairmanTel").val();
+	var corpGeneralManager = $("#corpGeneralManager").val();
+	var corpGeneralManagerTel = $("#corpGeneralManagerTel").val();
+	var corpOrganizationStructure = $("#corpOrganizationStructure").val();
+	var corpManagementStructure = $("#corpManagementStructure").val();
+
+	if(corpName==null||corpName==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业名称不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpLegalPerson==null||corpLegalPerson==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业法人不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpLegalPersonTel==null||corpLegalPersonTel==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业法人联系电话不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpRegisteredFunds==null||corpRegisteredFunds==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业注册资金不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpRegisteredFunds.search(/^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$ /)==-1){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('请输入正确的金额格式');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		})
+		event.preventDefault();
+		return;
+	}
+	if(corpTrueFunds==null||corpTrueFunds==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业实到资金不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpTrueFunds.search(/^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$ /)==-1){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('请输入正确的金额格式');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		})
+		event.preventDefault();
+		return;
+	}
+	if(corpManageScope==null||corpManageScope==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业经营范围不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpFixedTel==null||corpFixedTel==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业电话不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpWechat==null||corpWechat==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业微信或联系人微信不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpMainBusiness==null||corpMainBusiness==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业主营业务范围不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpSituationBusiness==null||corpSituationBusiness==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('企业现阶段业务经营情况不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+	if(corpChairman==null||corpChairman==""){
+		$('.cover-level').css('display','block');
+		$('.alert-text').text('董事长姓名不能为空');
+		$('.close-dialog').click(function(){
+		$('.cover-level').css('display','none');
+		});
+		event.preventDefault();
+		return;
+	}
+
+	var length = $("#table tr").length;
+	var jcCorpShareholders = [];
+	for(var i=1;i<length;i++){
+		var jcCorpShareholder ={};
+		jcCorpShareholder.shareholderName = $("#input"+i+"_1").val();
+		jcCorpShareholder.shareholderDonate = $("#input"+i+"_2").val();
+		jcCorpShareholder.shareholderPercent = $("#input"+i+"_3").val();
+		jcCorpShareholder.shareholderPaytype = $("#input"+i+"_4").val();
+		jcCorpShareholders.push(jcCorpShareholder);
+	}	
+	var jcCorpShareholderDto =  JSON.stringify(jcCorpShareholders);
+	var value = {
+			corpName:corpName,
+			corpLegalPerson:corpLegalPerson,
+			corpLegalPersonTel:corpLegalPersonTel,
+			corpRegisteredFunds:corpRegisteredFunds,
+			corpTrueFunds:corpTrueFunds,
+			corpManageScope:corpManageScope,
+			corpFixedTel:corpFixedTel,
+			corpFax:corpFax,
+			corpHomepage:corpHomepage,
+			corpWechat:corpWechat,
+			corpMainBusiness:corpMainBusiness,
+			corpSituationBusiness:corpSituationBusiness,
+			corpPlanBusiness:corpPlanBusiness,
+			corpChairman:corpChairman,
+			corpChairmanTel:corpChairmanTel,
+			corpGeneralManager:corpGeneralManager,
+			corpGeneralManagerTel:corpGeneralManagerTel,
+			corpOrganizationStructure:corpOrganizationStructure,
+			corpManagementStructure:corpManagementStructure,
+			jcCorpShareholderDto :jcCorpShareholderDto
+		};
+	
+	
+	var list = document.getElementsByClassName('fileSty');
+	if(list==0){
+		alert("营业执照不能空");
+	}
+	var arr = [];
+ 		 var formData = new FormData();
+	for(var i=0;i<list.length;i++){
+			if(list[i].files.length>0){
+				var fileObj = list[i].files[0];
+		 		formData.append("uploadfile", fileObj); // 文件对象 
+			}
+	};
+	
+			$.ajax({
+				url : '/company/upload_file.jspx',
+				type : 'post',
+				data : formData,
+				async : false, // 默认为true 异步
+				cache: false,//上传文件无需缓存 
+				processData: false,//用于对data参数进行序列化处理 这里必须false
+				contentType: false, //必须 
+				error : function() {
+					alert('error');
+				},
+				success : function(data) {
+					applyEnterprise(data,value);
+				}
+			});
+
+		
+});
+
+function applyEnterprise(data,value){
+		
+		value.corpLicense=data;
+		
+		$.ajax({
+		url : '/company/corp_apply.jspx',
+		type : 'post',
+		data : value,
+		async : false, // 默认为true 异步
+		traditional: true,//这里设置为true
+		error : function(data) {
+			alert('error '+data);
+		},
+		success : function(data) {
+			alert('success');
+			window.location.href="/xjrqylm/index.jhtml";
+		}
+	});
+}
+
+</script>
+</html>

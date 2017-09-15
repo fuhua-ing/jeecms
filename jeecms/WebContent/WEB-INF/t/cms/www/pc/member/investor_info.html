@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>修改投资人认证</title>
+    <link rel="stylesheet" type="text/css" href="/${res}/css/common_grzx.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/index.css">
+    <link rel="stylesheet" type="text/css" href="${resSys}/tooltipster/tooltipster.bundle.min.css">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+	<script src="${resSys}/front.js" type="text/javascript"></script>
+	<script src="${resSys}/www/pc/js/jquery.serializejson.min.js" type="text/javascript"></script>
+	<script src="${resSys}/tooltipster/tooltipster.bundle.min.js" type="text/javascript"></script>
+	<script src="/${res}/js/region.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+    $('#userLeftLi2').addClass("user_left_hover");
+    $("#commitBtn").click(function(){
+    	$("#commitBtn").attr("disabled",true);
+      $("#tableForm").submit();
+    });
+   	<#if (item.companyAddressProvince)?? &&item.companyAddressProvince?length gt 1 && (item.companyAddressCity)?? && item.companyAddressCity?length gt 1>
+   	loadData(companyAddressProvince,${(item.companyAddressProvince)},companyAddressCity,${(item.companyAddressCity)});
+   	<#else>
+    loadData(companyAddressProvince,000000,companyAddressCity,000000);
+   	</#if>
+
+    $('input[type="text"]').tooltipster({
+      trigger: 'custom',
+      position: 'right',
+      animation: 'grow'
+    });
+    $('input[type="checkbox"]').tooltipster({
+      trigger: 'custom',
+      position: 'right',
+      animation: 'grow'
+    });
+    $('input[type="radio"]').tooltipster({
+      trigger: 'custom',
+      position: 'right',
+      animation: 'grow'
+    });
+    $('select.ustext03').tooltipster({
+      trigger: 'custom',
+      position: 'right',
+      animation: 'grow'
+    });
+
+    $("#tableForm").validate({
+      rules : {
+    	  "companyPost" : {
+    		required : true
+    	  },
+          "companyAddressProvince" : {
+            required : true
+          },
+          "companyAddressCity" : {
+            required : true
+          },
+          "realName" : {
+              required : true
+          },
+          "identity" : {  
+              required : true
+          },
+          "idcardNumber" : {
+              required : true
+          },
+          "investStage" : {
+              required : true
+          },
+          "intentionIndustry" : {
+              required : true
+          },
+          "investMin" : {
+              required : {
+                depends:function(){
+                  if ($('#investDiscuss').is(':checked')){
+                    return false;
+                  }
+                  return true;
+                }
+              },
+              number : true,
+              min : 0,
+              max : 9999999.9999
+          },
+          "investMax" : {
+              required : {
+                depends:function(){
+                  if ($('#investDiscuss').is(':checked')){
+                    return false;
+                  }
+                  return true;
+                }
+              },
+              number : true,
+              min : 0,
+              max : 9999999.9999,
+              gtValueWithCheckBox : {
+                valueId : "#investMin",
+                checkboxId: "#investDiscuss"
+              }
+          },
+          "holdStockRatioMin" : {
+              required : {
+                depends:function(){
+                  if ($('#holdStockDiscuss').is(':checked')){
+                    return false;
+                  }
+                  return true;
+                }
+              },
+              number : true,
+              min : 0,
+              max : 9999999.9999
+          },
+          "holdStockRatioMax" : {
+              required : {
+                depends:function(){
+                  if ($('#holdStockDiscuss').is(':checked')){
+                    return false;
+                  }
+                  return true;
+                }
+              },
+              number : true,
+              min : 0,
+              max : 9999999.9999,
+              gtValueWithCheckBox : {
+                valueId : "#holdStockRatioMin",
+                checkboxId: "#holdStockDiscuss"
+              }
+          }
+      },
+      submitHandler: function(formTar){  
+          var serialStr = $("#tableForm").serializeJSON();  
+          var urlStr = '/investor/investorQualificationInfo.jspx';
+          //投资阶段
+          var checkedIndustry = [];
+          $("input[name='intentionIndustry']:checked").each(function() {
+                checkedIndustry.push($(this).val());  
+          });
+          serialStr['intentionIndustry']=checkedIndustry.join(',');
+          //意向投资行业
+          var checkedStage = [];
+          $("input[name='investStage']:checked").each(function() {  
+                checkedStage.push($(this).val());  
+          });
+          serialStr['investStage']=checkedStage.join(',');
+          //单个项目投资额度
+          if ($('#investDiscuss').is(':checked')){
+            serialStr['investMin'] = undefined;
+            serialStr['investMax'] = undefined;
+          }
+          //单个项目参股比例
+          if ($('#holdStockDiscuss').is(':checked')){
+            serialStr['holdStockRatioMin'] = undefined;
+            serialStr['holdStockRatioMax'] = undefined;
+          }
+          //省名
+          serialStr['provinceName'] = $("#companyAddressProvince :selected").text();
+          //市名
+          serialStr['cityName'] = $("#companyAddressCity :selected").text();
+          $.ajax({
+              type:'post',  
+              url:urlStr,  
+              data:serialStr,
+              async : false, 
+              success:function(data){  
+                 
+              }  
+          });
+          window.location.href="investorQualificationInfo.jspx";
+      },
+      errorPlacement : function (error, element) {
+        var ele = $(element),
+            err = $(error),
+            msg = err.text();
+        if (msg != null && msg !== '') {
+            ele.tooltipster('content', msg);
+            ele.tooltipster('open');
+        }
+        $("#commitBtn").removeAttr("disabled");
+      },
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).tooltipster('close');
+      }
+    }); 
+});
+
+function clearNoNum(obj) {  
+    obj.value = obj.value.replace(/[^\d.]/g,"");
+    obj.value = obj.value.replace(/^\./g,"");  
+    obj.value = obj.value.replace(/\.{2,}/g,".");
+    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");  
+    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d\d\d).*$/,'$1$2.$3');
+}
+
+function validNumber(data){
+	var reg = /^\d{0,7}\.?\d{0,4}$/;
+	return reg.test(data);
+}
+
+function imgClick(obj,data){
+  var divElement = $("#div"+data);
+  if(divElement.is(':hidden')){
+    divElement.animate({height: 'toggle', opacity: 'toggle'}, "slow");
+  } else {
+    divElement.animate({height: 'toggle', opacity: 'toggle'}, "slow");
+  }
+}
+</script>
+
+</head>
+<body>
+    <#include "../include/header.html"/>
+    <section class="body_bg">
+           <div class="u_content">
+                 <div class="user_left">
+                      <ul>
+                      <#include "../include/user_left.html"/>
+                      </ul>
+                 </div>
+                 <form id="tableForm">
+                 <div class="user_right">
+                      <div class="renx"><span>投资人认证</span></div>
+                      <!---------->
+                      <div class="zhan zhan40">
+                            <div class="title">
+                                 <span>基本信息</span>
+                                 <font><a href="javascript:void(0);" onclick="imgClick(this,1)">收起<img src="/${res}/img/up.png"></a></font>
+                            </div>
+                            <div id="div1" class="uetab">
+                                  <h2><span><i>*</i>投资人身份：</span>
+                                  <font><i><input name="identity" type="radio" <#if (item.identity)??&&item.identity==1>checked="true"</#if> value="1">个人投资者</i>
+                                  <i><input name="identity" type="radio" <#if (item.identity)??&&item.identity==2>checked="true"</#if> value="2">机构投资者</i>
+                                  </font></h2>
+                                  <h2><span><i>*</i>真实姓名：</span><font><input name="realName" type="text" placeholder="请输入真实姓名" class="ustext02" value="${(item.realName)!}"></font></h2>
+                                  <h2><span><i>*</i>公司职务：</span><font><input name="companyPost" type="text" placeholder="请输入公司职务" class="ustext02" value="${(item.companyPost)!}"></font></h2>
+                                  <h2><span><i>*</i>所在公司：</span>
+                                  <font>
+                                  <i><select id="companyAddressProvince" name="companyAddressProvince" class="ustext03" onchange="chgProvinces(companyAddressProvince,companyAddressCity)"><option></option></select></i>
+                                  <i><select id="companyAddressCity" name="companyAddressCity" class="ustext03"><option></option></select></i>
+                                  <br>
+                                  <input name="companyAddressDetail" type="text" class="ustext_1 martop" style="margin-left:170px;" value="${(item.companyAddressDetail)!}" placeholder="请输入项目详细地址">
+                                  </font>
+                                  </h2>
+                                  <h2>
+                                  <span><i>*</i>身份证号：</span>
+                                  <font><input name="idcardNumber" type="text" class="ustext_1" value="${(item.idcardNumber)!}" placeholder="请输入身份证号">
+                                  <input name="id" type="hidden" value="${(item.id)!}">
+                                  </font>
+                                  </h2>
+                                  <h2>
+                                  <span>微信号：</span>
+                                  <font><input name="wechatNumber" type="text" class="ustext_1" value="${(item.wechatNumber)!}" placeholder="请输入微信号">
+                                  </font>
+                                  </h2>
+                            </div>
+                      </div>
+                      <!---------->
+                      <div class="zhan zhan40">
+                            <div class="title">
+                                 <span>投资兴趣</span>
+                                 <font><a href="javascript:void(0);" onclick="imgClick(this,2)">收起<img src="/${res}/img/up.png"></a></font>
+                            </div>
+                            <div id="div2" class="uetab" style="display:">
+                                  <h2>
+                                  <span><i>*</i>投资阶段：</span>
+                                  <font>
+                                  <#if investStageList??>
+                                  	<#list investStageList as investStage>
+                                  		<#if (item.investStage)??>
+                                  			<#assign stage = (item.investStage?split(","))/>
+                                  			<i class="ue_right"><input name="investStage" type="checkbox" <#if stage?seq_contains(investStage.value)>checked="true"</#if> value="${investStage.value!}">${investStage.name!}</i>
+                                  		<#else>
+                                  		<i class="ue_right"><input name="investStage" type="checkbox" value="${investStage.value!}">${investStage.name!}</i>
+                                  		</#if>
+                                  	</#list>
+                                  </#if>
+                                  </font>
+                                  </h2>
+                                  <h2>
+                                  <span><i>*</i>意向投资行业：</span>
+                                  <font>
+                                  <#if investFiledList??>
+                                  	<#list investFiledList as investFiled>
+                                  		<#if (item.intentionIndustry)??>
+                                  		<#assign intentionIndustryArray=(item.intentionIndustry?split(","))/>
+                                  		<i class="ue_right"><input name="intentionIndustry" <#if intentionIndustryArray?seq_contains(investFiled.value)>checked="true"</#if> type="checkbox" value="${investFiled.value!}">${investFiled.name!}</i>
+                                  		<#else>
+                                  		<i class="ue_right"><input name="intentionIndustry" type="checkbox" value="${investFiled.value!}">${investFiled.name!}</i>
+                                  		</#if>
+                                  	</#list>
+                                  </#if>
+                                  </font>
+                                  </h2>
+                                  <h2><span><i>*</i>单个项目投资额度：</span>
+                                  <font>
+                                      <i class="ustext05"><input id="investMin" name="investMin" type="text" onkeyup="clearNoNum(this)" class="ustbord" value="${(item.investMin)!}">万元</input></i><b class="left">~</b>
+                                      <i class="ustext05"><input id="investMax" name="investMax" type="text" onkeyup="clearNoNum(this)" class="ustbord" value="${(item.investMax)!}">万元</input></i>
+                                      <i style="line-height:47px;"><input id="investDiscuss" name="investDiscuss" type="checkbox" <#if (item.investMin)??||(item.investMax)??><#else>checked="true"</#if> value="1">面议</i>
+                                  </font>
+                                  </h2>
+                                  <h2><span><i>*</i>单个项目参股比例：</span>
+                                  <font>
+                                      <i class="ustext05"><input id="holdStockRatioMin" name="holdStockRatioMin" type="text" onkeyup="clearNoNum(this)" class="ustbord"  value="${(item.holdStockRatioMin)!}"></input>%</i><b class="left">~</b>
+                                      <i class="ustext05"><input id="holdStockRatioMax" name="holdStockRatioMax" type="text" onkeyup="clearNoNum(this)" class="ustbord" value="${(item.holdStockRatioMax)!}"></input>%</i>
+                                      <i style="line-height:47px;"><input id="holdStockDiscuss" name="holdStockDiscuss" <#if (item.holdStockRatioMin)??||(item.holdStockRatioMax)??><#else>checked="true"</#if> type="checkbox" value="1">面议</i>
+                                  </font>
+                                  </h2>
+                                  <h2><span>成功投资案例：</span>
+                                  <font><textarea name="successCase" cols="" rows="" class="ustextarea" placeholder="请填写公司简介和企业投融案例">${(item.successCase)!}</textarea></font>
+                                  </h2>
+                                  <h2><span>备注：</span>
+                                  <font><textarea name="comment" cols="" rows="" class="ustextarea" placeholder="请填写公司简介和企业投融案例">${(item.comment)!}</textarea></font></h2>
+                            </div>
+                       </div>             
+                      <!---------->
+                      <div class="butbot" style="margin-top:-30px"><button class="button01" id="commitBtn" type="button">提交认证</button></div>
+                   </div>
+           		 </form>
+           </div>
+    </section>
+    <#include "../include/footer.html"/>
+</body>
+</html>

@@ -1,0 +1,35 @@
+.content{
+	padding: 0 15px;
+}
+.listItem{
+	height: 95px;
+	border-bottom: 1px solid #eee;
+}
+.text{
+	width: 220px;
+}
+.textName{
+	font-size: 18px;
+	padding: 15px 0 0 0;
+	color: #333;
+}
+.releaseDate{
+	color: #dcdcdc;
+	font-size: 12px;
+	margin-top: 4px;
+}
+.pic{
+	margin-top: 8px;
+}
+.pic img{
+	width: 100px;
+	height: 75px;
+}
+@media screen and (max-width: 359px){
+	.text{
+		width: 180px;
+	}
+	.content{
+		padding: 0 10px;
+	}
+}

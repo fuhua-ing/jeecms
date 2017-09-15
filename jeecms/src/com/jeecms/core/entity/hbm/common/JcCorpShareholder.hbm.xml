@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jeecms.core.entity.JcCorpShareholder" table="jc_corp_shareholder">
+        <id name="shareholderId" type="java.lang.Integer">
+            <column name="shareholder_id" />
+            <generator class="increment" />
+        </id>
+        <property name="shareholderName" type="java.lang.String">
+            <column name="shareholder_name" length="50">
+                <comment>股东姓名</comment>
+            </column>
+        </property>
+        <property name="shareholderDonate" type="java.lang.Double">
+            <column name="shareholder_donate" precision="15">
+                <comment>投资注册金额</comment>
+            </column>
+        </property>
+        <property name="shareholderPercent" type="java.lang.String">
+            <column name="shareholder_percent" length="10">
+                <comment>出资比例</comment>
+            </column>
+        </property>
+        <property name="shareholderPaytype" type="java.lang.String">
+            <column name="shareholder_paytype" length="20">
+                <comment>出资方式(货币/实物/无形资产)</comment>
+            </column>
+        </property>
+        <property name="corpId" type="java.lang.Integer">
+            <column name="corp_id" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

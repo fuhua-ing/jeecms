@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>${site.name}</title>
+    <meta http-equiv="keywords" content="${site.keywords!}"/>
+    <meta http-equiv="description" content="${site.description!}"/>
+	<link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="/${res}/css/newsCenter.css">
+	<script src="${resSys}/jquery.js" type="text/javascript"></script>
+	<script src="${resSys}/front.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  $(function(){
+    $("#clickSearch").click(function(){
+        doSearch();
+    });
+    $('#enterSearch').keydown(function(e){
+      if(e.keyCode==13){
+        doSearch();
+      }
+    });
+    window.parent.$('.tabBtn').removeClass("tabActive");
+    window.parent.$('#li3').addClass("tabActive");
+  });
+  function doSearch(){
+    window.parent.$('#interactionFrame').attr("src",
+      "interactionFrame3.jspx?searchMoney="+$('#condition1').val()
+      +"&searchRadio="+$('#condition2').val()+
+      "&searchPosition="+$('#condition3').val()
+      +"&pageNo="+$('#pageNo').val()
+      +"&searchName="+$('#enterSearch').val());
+  }
+  function selectCondition(name,data){
+    if ($('#'+name).val() != data){
+      $('#'+name+$('#'+name).val()).removeClass("tit_hover");
+      $('#'+name).val(data);
+      $('#'+name+data).addClass("tit_hover");
+    }
+  }
+   function _gotoPage(pageNo) {
+      $("#pageNo").val(pageNo);
+      doSearch();
+   }
+   function _gotoDetail(data){
+    if (data){
+      window.parent.location.href = "/interactionFrame3/detail.jspx?id="+data;
+    } else {
+      window.parent.location.href = "/interactionFrame3/detail.jspx?id=";
+    }
+   }
+  </script>
+</head>
+<body>
+	<div class="gudonglist">
+      <div class="gumenu">
+            <div class="aulist">
+                 <h2>
+                 <input id="pageNo" type="hidden" name="pageNo" value="${(pagination.pageNo)!'1'}"/>
+                 <div class="titf">转让份额：</div>
+                 <div class="titf02">
+                	<#if searchMoney??>
+                	  <input id="condition1" type="hidden" value="${searchMoney}"/>
+                	  <a id="condition11" href="javascript:void(0);" <#if searchMoney=="1">class="tit_hover"</#if> onclick="selectCondition('condition1',1)">不限</a>
+                    <a id="condition12" href="javascript:void(0);" <#if searchMoney=="2">class="tit_hover"</#if> onclick="selectCondition('condition1',2)">500万（含）以下</a>
+                    <a id="condition13" href="javascript:void(0);" <#if searchMoney=="3">class="tit_hover"</#if> onclick="selectCondition('condition1',3)">500万-1000万（含）</a>
+                    <a id="condition14" href="javascript:void(0);" <#if searchMoney=="4">class="tit_hover"</#if> onclick="selectCondition('condition1',4)">1000万-5000万（含）</a>
+                    <a id="condition15" href="javascript:void(0);" <#if searchMoney=="5">class="tit_hover"</#if> onclick="selectCondition('condition1',5)">5000万以上</a>
+                	<#else>
+                	<input id="condition1" type="hidden" value="1"/>
+                	<a id="condition11" href="javascript:void(0);" class="tit_hover" onclick="selectCondition('condition1',1)">不限</a>
+                    <a id="condition12" href="javascript:void(0);" onclick="selectCondition('condition1',2)">500万（含）以下</a>
+                    <a id="condition13" href="javascript:void(0);" onclick="selectCondition('condition1',3)">500万-1000万（含）</a>
+                    <a id="condition14" href="javascript:void(0);" onclick="selectCondition('condition1',4)">1000万-5000万（含）</a>
+                    <a id="condition15" href="javascript:void(0);" onclick="selectCondition('condition1',5)">5000万以上</a>
+                	</#if>
+                 </div>
+                 <h2>
+                 <div class="titf">股权占比：</div>
+                 <div class="titf02">
+                 <#if searchRadio??>
+                 	  <input id="condition2" type="hidden" value="${searchRadio}"/>
+                    <a id="condition21" href="javascript:void(0);" <#if searchRadio=="1">class="tit_hover"</#if> onclick="selectCondition('condition2',1)">不限</a>
+                    <a id="condition22" href="javascript:void(0);" <#if searchRadio=="2">class="tit_hover"</#if> onclick="selectCondition('condition2',2)">5%（含）以下</a>
+                    <a id="condition23" href="javascript:void(0);" <#if searchRadio=="3">class="tit_hover"</#if> onclick="selectCondition('condition2',3)">5%-10%（含）</a>
+                    <a id="condition24" href="javascript:void(0);" <#if searchRadio=="4">class="tit_hover"</#if> onclick="selectCondition('condition2',4)">10%-20%（含）</a>
+                    <a id="condition25" href="javascript:void(0);" <#if searchRadio=="5">class="tit_hover"</#if> onclick="selectCondition('condition2',5)">20%-50%（含）</a>
+                    <a id="condition26" href="javascript:void(0);" <#if searchRadio=="6">class="tit_hover"</#if> onclick="selectCondition('condition2',6)">50%以上</a>
+                 <#else>
+                 	  <input id="condition2" type="hidden" value="1"/>
+                    <a id="condition21" href="javascript:void(0);" class="tit_hover" onclick="selectCondition('condition2',1)">不限</a>
+                    <a id="condition22" href="javascript:void(0);" onclick="selectCondition('condition2',2)">5%（含）以下</a>
+                    <a id="condition23" href="javascript:void(0);" onclick="selectCondition('condition2',3)">5%-10%（含）</a>
+                    <a id="condition24" href="javascript:void(0);" onclick="selectCondition('condition2',4)">10%-20%（含）</a>
+                    <a id="condition25" href="javascript:void(0);" onclick="selectCondition('condition2',5)">20%-50%（含）</a>
+                    <a id="condition26" href="javascript:void(0);" onclick="selectCondition('condition2',6)">50%以上</a>
+                 </#if>
+                 </div>
+                 </h2>
+                 <h2>
+                 <div class="titf">项目位置：</div>
+                  <div class="titf02">
+                  <#if searchPosition??>
+                    <input id="condition3" type="hidden" value="${searchPosition}"/>
+                    <a id="condition31" href="javascript:void(0);" <#if searchPosition=="1">class="tit_hover"</#if> onclick="selectCondition('condition3',1)">不限</a>
+                    <a id="condition3330600" href="javascript:void(0);" <#if searchPosition=="330600">class="tit_hover"</#if> onclick="selectCondition('condition3',330600)">绍兴市</a>
+                    <a id="condition3330100" href="javascript:void(0);" <#if searchPosition=="330100">class="tit_hover"</#if> onclick="selectCondition('condition3',330100)">杭州市</a>
+                    <a id="condition3330200" href="javascript:void(0);" <#if searchPosition=="330200">class="tit_hover"</#if> onclick="selectCondition('condition3',330200)">宁波市</a>
+                    <a id="condition3330400" href="javascript:void(0);" <#if searchPosition=="330400">class="tit_hover"</#if> onclick="selectCondition('condition3',330400)">嘉兴市</a>
+                    <a id="condition3330300" href="javascript:void(0);" <#if searchPosition=="330300">class="tit_hover"</#if> onclick="selectCondition('condition3',330300)">温州市</a>
+                    <a id="condition3330500" href="javascript:void(0);" <#if searchPosition=="330500">class="tit_hover"</#if> onclick="selectCondition('condition3',330500)">湖州市</a>
+                  <#else>
+                    <input id="condition3" type="hidden" value="1"/>
+                    <a id="condition31" href="javascript:void(0);" class="tit_hover" onclick="selectCondition('condition3',1)">不限</a>
+                    <a id="condition3330600" href="javascript:void(0);" onclick="selectCondition('condition3',330600)">绍兴市</a>
+                    <a id="condition3330100" href="javascript:void(0);" onclick="selectCondition('condition3',330100)">杭州市</a>
+                    <a id="condition3330200" href="javascript:void(0);" onclick="selectCondition('condition3',330200)">宁波市</a>
+                    <a id="condition3330400" href="javascript:void(0);" onclick="selectCondition('condition3',330400)">嘉兴市</a>
+                    <a id="condition3330300" href="javascript:void(0);" onclick="selectCondition('condition3',330300)">温州市</a>
+                    <a id="condition3330500" href="javascript:void(0);" onclick="selectCondition('condition3',330500)">湖州市</a>
+                  </#if>
+                    </div>
+                 </h2>
+            </div>
+      </div>
+     <div class="selectdiv"> 
+        <input id="enterSearch" class="selectbox" value="${searchName!}" placeholder="请输入您想搜索项目名称" type="text">
+        <a href="javascript:void();" id="clickSearch"><img  class="selectimg" src="/${res}/img/selectimg.png"></a>
+    </div>
+     <div class="qiye"> 
+     	<#if (pagination.totalCount)??&&(pagination.totalCount gt 0)>
+           <ul>
+          	 <#list pagination.list as item>
+               <li>
+                  <div class="qiye_top">
+                        <div class="leftfont lfcolor">${(item.projectName)!}</div>
+                        <div class="rightfont">
+                              <span><img src="/${res}/img/xicon.png">${(item.cityName)!}</span>
+                              <span><img src="/${res}/img/timecon.png">
+                              <#if (item.applyTime)??>
+                              ${item.applyTime?string('yyyy-MM-dd HH:mm:ss')}
+                              </#if>
+                              </span>
+                        </div>
+                  </div> 
+                  <div class="qiye_down">
+                       <div class="cent">
+                            <div class="centleft">
+                                 <span>企业名称</span>
+                                 <font>${(item.companyName)!}</font>
+                            </div>
+                            <div class="centleft">
+                                 <span>转让份额</span>
+                                 <#if (item.transferStockRatio)?? && item.transferStockRatio?length gt 0>
+                                 <font>${item.transferStockRatio}万</font>
+                                 <#else>
+                                 <font></font>
+                                 </#if>
+                            </div>
+                            <div class="centleft">
+                                 <span>股权占比</span>
+                                 <#if (item.holdStockRatio)?? && item.holdStockRatio?length gt 0>
+                                 <font>${item.holdStockRatio}%</font>
+                                 <#else>
+                                 <font></font>
+                                 </#if>
+                            </div>
+                            <div class="centleft01">
+                                 <img src="/${res}/img/zhuangr.png">
+                            </div>
+                            <div class="centleft01">
+                                <a href="javascript:void();" onclick="_gotoDetail(${item.id!})" class="lotc">查看详情</a>
+                            </div>
+                       </div>
+                  </div>
+               </li>
+             </#list>
+           </ul>
+           <div class="cepage">
+           	<a <#if pagination.firstPage> disabled="true" <#else> onclick="_gotoPage('1');" </#if>><</a>
+              <#if pagination.pageNo gt 1>
+              <a onclick="_gotoPage('${pagination.pageNo-1}');">${pagination.pageNo-1}</a>
+              </#if>
+              <a class="cepage_h" onclick="_gotoPage('${pagination.pageNo}');">${pagination.pageNo}</a>
+              <#if (pagination.pageNo+1) lte pagination.totalPage>
+               <a onclick="_gotoPage('${pagination.pageNo+1}');">${pagination.pageNo+1}</a>
+              </#if>
+              <#if (pagination.pageNo+2) == pagination.totalPage>
+              	<a onclick="_gotoPage('${pagination.pageNo+2}');">${pagination.pageNo+2}</a>
+        			<#elseif (pagination.pageNo+2) lt pagination.totalPage>
+              	<a>..</a>
+             		<#if (pagination.pageNo+9) lte pagination.totalPage>
+             		<a onclick="_gotoPage('${pagination.pageNo+9}');">${pagination.pageNo+9}</a>
+             		<#else>
+             		<a onclick="_gotoPage('${pagination.totalPage}');">${pagination.totalPage}</a>
+              	</#if>
+              </#if>
+              <a <#if pagination.lastPage> disabled="true" <#else> onclick="_gotoPage('${pagination.totalPage}');"</#if>>></a>
+           </div>
+      </#if>
+     </div>
+ </div>                                
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>发布转让</title>
+    <link rel="stylesheet" type="text/css" href="/${res}/css/common_grzx.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/index.css">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+	<script src="${resSys}/front.js" type="text/javascript"></script>
+	<script src="${resSys}/www/pc/js/jquery.serializejson.min.js" type="text/javascript"></script>
+  <script src="/${res}/js/region.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$(function(){
+      $('#userLeftLi4').addClass("user_left_hover");
+      <#if (item.companyAddressProvince)?? &&item.companyAddressProvince?length gt 1 && (item.companyAddressCity)?? && item.companyAddressCity?length gt 1>
+      loadData(companyAddressProvince,${(item.companyAddressProvince)},companyAddressCity,${(item.companyAddressCity)});
+      <#else>
+      loadData(companyAddressProvince,000000,companyAddressCity,000000);
+      </#if>
+
+      $("#commitBtn").click(function(){
+        $("#commitBtn").attr("disabled",true);
+        $("#tableForm").submit();
+      });
+
+      $('input[type="text"]').tooltipster({
+        trigger: 'custom',
+        position: 'right',
+        animation: 'grow'
+      });
+      $('select.ustext03').tooltipster({
+        trigger: 'custom',
+        position: 'right',
+        animation: 'grow'
+      });
+
+		  $('#tableForm').validate({
+			      rules : {
+	              "projectName" : {
+	                  required : true
+	              },
+	              "companyName" : {
+	                  required : true
+	              },
+	              "companyAddressProvince" : {
+	                  required : true
+	              },
+	              "companyAddressCity" : {
+	                  required : true
+	              },
+	              "industry" : {
+	                  required : true
+	              },
+	              "stage" : {
+	                  required : true
+	              },
+		          "evaluation" : {
+		              number : true,
+		              min : 0,
+		              max : 9999999.9999
+		          },
+		          "transferStockRatio" : {  
+		              number : true,
+		              min : 0,
+		              max : 9999999.9999
+		          },
+		          "holdStockRatio" : {
+		              number : true,
+		              min : 0,
+		              max : 9999999.9999
+		          }
+		      },
+          submitHandler: function(formTar){
+              var urlStr = "/releaseTransfer/transferInfo.jspx";
+              var serialStr = $("#tableForm").serializeJSON();  
+              //省名
+              serialStr['provinceName'] = $("#companyAddressProvince :selected").text();
+              //市名
+              serialStr['cityName'] = $("#companyAddressCity :selected").text();
+              $.ajax({
+                type:'post',  
+                url:urlStr,  
+                data:serialStr,
+                async : false, 
+                success:function(data){
+                  alert("success");
+                }
+              });
+              window.location.href="/projectManager/page.jspx?tab=2";
+          },
+		      errorPlacement : function (error, element) {
+            var ele = $(element),
+                err = $(error),
+                msg = err.text();
+            if (msg != null && msg !== '') {
+                ele.tooltipster('content', msg);
+                ele.tooltipster('open');
+            }
+            $("#commitBtn").removeAttr("disabled");
+          },
+          unhighlight: function(element, errorClass, validClass) {
+            $(element).tooltipster('close');
+          }
+		  });
+		});
+
+		function clearNoNum(obj) {  
+		    obj.value = obj.value.replace(/[^\d.]/g,"");
+		    obj.value = obj.value.replace(/^\./g,"");  
+		    obj.value = obj.value.replace(/\.{2,}/g,".");
+		    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");  
+		    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d\d\d).*$/,'$1$2.$3');
+		}
+	</script>
+</head>
+<body>
+    <#include "../include/header.html"/>
+    <section class="body_bg">
+    <form id="tableForm">
+           <div class="u_content">
+                 <div class="user_left">
+                      <ul>
+                        <#include "../include/user_left.html"/>
+                      </ul>
+                 </div>
+                 <div class="user_right">
+                      <div class="renx"><span>发布转让</span></div>
+                      <!---------->
+                      <div class="usertab">
+                      	   <input name="id" type="hidden" value="${(item.id)!}"/>
+                           <table>
+                               <tr>
+                                  <td width="130" valign="top"><i>*</i>项目名称：</td>
+                                  <td width="770"><input id="projectName" name="projectName" type="text" class="ustext_1 left" value="${(item.projectName)!}" placeholder="请输入项目名称"></td>
+                               </tr>
+                               <tr>
+                                  <td width="130" valign="top"><i>*</i>项目公司名称：</td>
+                                  <td width="770"><input id="companyName" name="companyName" type="text" class="ustext_1 left" value="${(item.companyName)!}" placeholder="请输入项目公司名称"></td>
+                               </tr>
+                               <tr>
+                                  <td valign="top"><i>*</i>项目所在地：</td>
+                                  <td>
+                                  <div class="add">
+                                  <select id="companyAddressProvince" name="companyAddressProvince" class="ustext03 left" style="margin-right:10px;" onchange="chgProvinces(companyAddressProvince,companyAddressCity)">
+                                  <option></option>
+                                  </select>
+                                  <select id="companyAddressCity" name="companyAddressCity" class="ustext03 left">
+                                  <option ></option>
+                                  </select>
+                                  </div>
+                                  <br>
+                                  <input name="companyAddressDetail" type="text" class="ustext_1 martop left" value="${(item.companyAddressDetail)!}" placeholder="请输入项目所在地详细地址">
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><i>*</i>所属领域：</td>
+                                  <td>
+                                  <select name="industry" class="fbtext_2 left">
+	                                  <option value="">请选择</option>
+	                                  <#if investFiledList??>
+	                                  	<#list investFiledList as investFiled>
+		                                  	<#if (item.industry)??>
+		                                  		<#assign industryArray = (item.industry?split(","))/>
+		                                  		<option value="${investFiled.value!}" <#if industryArray?seq_contains(investFiled.value)>selected="selected"</#if>>${investFiled.name!}</option>
+		                                  	<#else>
+		                                  	<option value="${investFiled.value!}">${investFiled.name!}</option>
+		                                  	</#if>
+	                                  	</#list>
+	                                  </#if>
+                                  </select>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><i>*</i>所属阶断：</td>
+                                  <td><select name="stage" class="fbtext_2 left">
+                                  <option value="">请选择</option>
+                                  	<#if investStageList??>
+	                                  	<#list investStageList as investStage>
+		                                  	<#if (item.stage)??>
+		                                  		<#assign stageArray = (item.stage?split(","))/>
+		                                  		<option value="${investStage.value!}" <#if stageArray?seq_contains(investStage.value)>selected="selected"</#if>>${investStage.name!}</option>
+		                                  	<#else>
+		                                  	<option value="${investStage.value!}">${investStage.name!}</option>
+		                                  	</#if>
+	                                  	</#list>
+	                                  </#if>
+                                  </select></td>
+                               </tr>
+                               <tr>
+                                  <td valign="top">项目介绍情况：</td>
+                                  <td><textarea name="projectDescribe" cols="" rows="" class="zrtextarea left" placeholder="请填写项目情况">${(item.projectDescribe)!}</textarea></td>
+                               </tr>
+                               <tr>
+                                  <td><i>*</i>本轮估值：</td>
+                                  <td><span class="ustext05b"><input name="evaluation" onkeyup="clearNoNum(this)" value="${(item.evaluation)!}" type="text" class="ustbord01">万元</span></td>
+                               </tr>
+                               <tr>
+                                  <td>本次转让股权份额：</td>
+                                  <td><span class="ustext05a"><input name="transferStockRatio" onkeyup="clearNoNum(this)" value="${(item.transferStockRatio)!}" type="text" class="ustbord02">%</span></td>
+                               </tr>
+                               <tr>
+                                  <td>股权占比：</td>
+                                  <td><span class="ustext05a"><input name="holdStockRatio" onkeyup="clearNoNum(this)" value="${(item.holdStockRatio)!}" type="text" class="ustbord02">%</span></td>
+                               </tr>
+                               <tr>
+                                  <td valign="top">备注：</td>
+                                 <td><textarea name="remark" cols="" rows="" class="zrtextarea left" placeholder="备注">${(item.remark)!}</textarea></td>
+                               </tr>
+                               <tr>
+                                  <td></td>
+                                  <td><button id="commitBtn" class="button left" type="button" style="margin-left:250px;">发布</button></td>
+                               </tr>
+                           </table>
+                   </div>
+                      <!---------->
+             </div>
+           </div>
+    </form>
+    </section>
+    <#include "../include/footer.html"/>
+</body>
+</html>

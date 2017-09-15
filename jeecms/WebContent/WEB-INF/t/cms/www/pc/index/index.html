@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>${site.name}</title>
+    <meta http-equiv="keywords" content="${site.keywords!}"/>
+    <meta http-equiv="description" content="${site.description!}"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${res}/js/responsiveslides.min.js" type="text/javascript" ></script>
+	<link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="/${res}/css/index.css">
+</head>
+<body>
+	<header>
+		<div class="head">
+			<img src="/${res}/img/logo.png">
+			<ul>
+				<li class="active">首页</li>
+				<li>[@cms_channel id='76']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='94']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='97']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='100']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+				<li>[@cms_channel id='101']<a class="color-dfbc6f" href="${tag_bean.url}">${tag_bean.name}</a>[/@cms_channel]</li>
+			</ul>
+ 			<div id="loginCsiDiv" style="float: right;"></div>
+		  	<script type="text/javascript">
+			$(function(){
+				[#if site.config.ssoEnable]
+				Cms.loginSSO('${base}');
+				[/#if]
+				Cms.loginCsi("${base}","loginCsiDiv",{"returnUrl":"${location}"});
+				
+				// Slideshow 4
+				$("#slider4").responsiveSlides({
+				  auto: false,
+				  pager: false,
+				  nav: true,
+				  speed: 500,
+				  namespace: "callbacks",
+				  before: function () {
+				    $('.events').append("<li>before event fired.</li>");
+				  },
+				  after: function () {
+				    $('.events').append("<li>after event fired.</li>");
+				  }
+				});
+			});
+		   </script>
+		</div>
+		
+	</header>
+        <div class="pic">
+			<img src="/${res}/img/banner-1.png">
+		</div>   
+		<div class="top">
+		<div class="flex topTab">
+			<div class="flex_1 rightLine tabItem">
+				<p class="name">入驻企业</p>
+				<p class="num">102</p>
+			</div>
+			<div class="flex_1 rightLine tabItem">
+				<p class="name">注册企业</p>
+				<p class="num">96</p>
+			</div>
+			<div class="flex_1 rightLine tabItem">
+				<p class="name">外部合作机构</p>
+				<p class="num">88</p>
+			</div>
+			<div class="flex_1 tabItem">
+				<p class="name">平台会员</p>
+				<p class="num">1426</p>
+			</div>
+		</div>
+	</div>
+	<section class="content">
+		<div class="news">
+			<div class="title">
+				<img src="/${res}/img/leaf.png">
+				<span>最新资讯</span>
+			</div>
+			<div style="overflow: hidden;">
+				<div id="wrapper">
+            <div class="callbacks_container">
+                <ul class="rslides" id="slider4">
+                    [@cms_content_list count='5' orderBy='4' titLen='10' channelId='105' channelOption='0' typeId='2']
+                    [#list tag_list as c] 
+                    <li>
+                        <a href='${c.url}' target="_blank">
+                        <img src="${c.typeImg!site.defImg}" alt="">
+                        <p class="caption">${c.title}</p>
+                        </a>
+                    </li>
+                    [/#list] 
+			        [/@cms_content_list]
+            </div>
+        </div>
+				<div class="newsList floatRight">
+					<ul>
+				[@cms_content_list count='10' orderBy='4' titLen='10' channelId='105' channelOption='0']
+			    	    [#list tag_list as c] 
+			            <li>
+                                         <a href='${c.url}' target="_blank">
+			            	<span>${c.title}</span>
+					<span>${c.releaseDate?string('yyyy-MM-dd')}</span>
+                                        </a>
+			            </li>
+			             [/#list] 
+			        [/@cms_content_list]
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div style="overflow: hidden;">
+		    [@cms_channel id='95']
+			<div class="title">
+				<img src="/${res}/img/leaf.png">
+				<span>${tag_bean.name}</span>
+			</div>
+			<div class="introText floatLeft">
+				${tag_bean.txt}
+			</div>
+			<div class="newsPic floatRight">
+				<img src="${tag_bean.contentImg!site.defImg}">
+			</div>
+			[/@cms_channel]
+		</div>
+
+		<div class="centerIntroduce">
+		    [@cms_channel id='96']
+			<div class="title">
+				<img src="/${res}/img/leaf.png">
+				<span>${tag_bean.name}</span>
+			</div>
+			<div class="center">
+			    ${tag_bean.txt}
+			</div>
+			[/@cms_channel]
+		</div>
+	</section>
+	[#include "../include/footer.html"/]
+</body>
+</html>

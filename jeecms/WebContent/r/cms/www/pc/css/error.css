@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+.error-container{
+	margin:auto;
+	text-align:center;
+	font-size:18px;
+}
+#errtips{
+	display:inline-block;
+	color:#ddd;
+}
+.error-container>a{
+	color:#428bca;
+	font-weight:bold;
+}

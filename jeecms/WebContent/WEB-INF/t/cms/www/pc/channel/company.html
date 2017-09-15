@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>${site.name}</title>
+    <meta http-equiv="keywords" content="${site.keywords!}"/>
+    <meta http-equiv="description" content="${site.description!}"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/${res}/css/common.css">
+	<link rel="stylesheet" type="text/css" href="/${res}/css/union.css">
+	<script type="text/javascript">
+	function setIframeHeight(iframe) {
+if (iframe) {
+var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+if (iframeWin.document.body) {
+iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+}
+}
+}
+	</script>
+</head>
+<body>
+	  [#include "../include/header.html"/]
+	  <div class="pic">
+		<img src="/${res}/img/banner-4.png">
+		<div class="btnBox">
+			<p class="name">新金融企业联盟</p>
+			<p class="naemEn">Business alliance</p>
+			<div>
+				<button class="btn floatLeft" onclick="window.location.href='/company/corp_apply.jspx'">申请入驻企业</button>
+				<button class="btn floatRight btnSty" onclick="window.location.href='/company/apply_cooperation.jspx'">申请外部合作机构</button>
+			</div>
+		</div>
+	  </div>
+	<section class="content">
+	    <div class="entryBox">
+	        [@cms_channel id='115']
+	        <a href="${tag_bean.url}" target="_blank">
+			<span class="entryBoxItem">
+				<img src="${tag_bean.contentImg}">
+				<span>${tag_bean.name}</span>
+			</span>
+			</a>
+			[/@cms_channel]
+			[@cms_channel id='116']
+	        <a href="${tag_bean.url}" target="_blank">
+			<span class="entryBoxItem">
+				<img src="${tag_bean.contentImg}">
+				<span>${tag_bean.name}</span>
+			</span>
+			</a>
+			[/@cms_channel]
+			[@cms_channel id='117']
+			<a href="${tag_bean.url}" target="_blank">
+			<span class="entryBoxItem">
+				<img src="${tag_bean.contentImg}">
+				<span>${tag_bean.name}</span>
+			</span>
+			</a>
+			[/@cms_channel]
+		</div>
+		<div class="trends">
+            [@cms_channel_list parentId='76']
+                [#list tag_list as c]
+                    [#if c_index==0]
+                    <span class="tabBtn tabActive">${c.name}</span>
+                    [#else]
+				<span class="tabBtn">${c.name}</span>
+				    [/#if]
+				[/#list]
+			[/@cms_channel_list]
+		</div>
+		<div class="trendsSearch">
+<!-- 	        <input type="text" placeholder="请输入您想搜索的企业"> -->
+<!-- 	        <img src="/${res}/img/search.png"> -->
+	    </div>
+		<div class='center forTab on'>
+            <iframe scrolling="no" frameborder="0" src="/qylmrzqy.jhtml" style="width:998px;" onload="setIframeHeight(this)" >
+            </iframe>
+		</div>
+		<div class="regCom forTab">
+		    <iframe scrolling="no" frameborder="0" src="/qylmzcqy.jhtml" style="width:998px;" onload="setIframeHeight(this)" >
+		    </iframe>
+		</div>
+		<div class="center forTab">
+		    <iframe scrolling="no" frameborder="0" src="/qylmwbhzjg.jhtml" style="width:998px; height:1024px" >
+		    </iframe>
+		</div>
+	</section>
+	[#include "../include/footer.html"/]
+</body>
+<script type="text/javascript" src="/${res}/js/union.js"></script>
+</html>
