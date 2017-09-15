@@ -1,0 +1,29 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+test-classes/
+target/
+bin/
+
+#eclipse
+.project
+.classpath
+.settings/
+.mymetadata
+
+#idea
+.idea
+*.iml
+
+logs/
+*.log
+
+
+
+# package
+META-INF
+out
